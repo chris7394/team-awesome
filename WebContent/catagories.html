@@ -78,8 +78,9 @@ escalates easier to code that reports the failure reasons -->
 	<script src="js/jquery.openCarousel.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 </head>
-<body>
+<body onload="toggleOwner()">
 	<div class="header">
   	  		<div class="wrap">
 				<div class="header_top">
@@ -102,9 +103,9 @@ escalates easier to code that reports the failure reasons -->
 			
 			<div class="header_top">
 				<div class="header_top_name">
-					Hello Garet!
+					Hello <span id="userName">Garet</span>!
 				</div> 
-			</div> 
+			</div>
 			
   		    <div class="navigation">
 				<ul class="nav">
@@ -131,9 +132,20 @@ escalates easier to code that reports the failure reasons -->
 				<span class="right-ribbon"> </span>    
   		    </div>
    		</div>
-   </div>
-   <!------------End Header ------------>
-	<div class="main">
+    </div>
+	<!------------End Header ------------>
+
+	<div id="error" class="main">
+		<div class="content">
+			<div class="content_top">
+				<div class="wrap">
+					This page is available to owners only
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="main" class="main">
 		<div class="content">
 			<div class="content_bottom">
 				<div class="wrap">
