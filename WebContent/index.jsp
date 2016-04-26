@@ -16,12 +16,16 @@
       		<form class="form-signin" action="_login_.jsp" method="post">
         		<h2 class="form-signin-heading">Please sign in</h2>
         		<label for="inputEmail" class="sr-only">Email address</label>
-       			<input type="text" class="form-control" id="inputEmail" name="username" placeholder="Email address" required autofocus>
+       			<input type="text" class="form-control" id="inputEmail" name="username" placeholder="Email address" autofocus>
         		<br>
         		<label for="inputPassword" class="sr-only">Password</label>
-        		<input type="text" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        		<input type="text" name="password" id="inputPassword" class="form-control" placeholder="Password">
         		<br>
         		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        		
+        		<br><br><br><br><br><br><br><br>
+        		
+        		<a href="signup.jsp" class="btn btn-lg btn-danger btn-block">Need to signup?</a>
       		</form>
     	</div>
 	</body>
