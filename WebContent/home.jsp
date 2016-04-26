@@ -33,7 +33,16 @@
 			
 			<div class="header_top">
 				<div class="header_top_name">
-					Hello Garet!
+					<%
+            			if(session.getAttribute("username").toString() != null){
+            				String username = session.getAttribute("username").toString();
+            				out.println("Hello  "+username);
+            			}
+            			else{
+            				out.println("<a href='login.html'>Login / Signup</a>");
+            			}
+            			
+            		%>
 				</div> 
 			</div>
 			
