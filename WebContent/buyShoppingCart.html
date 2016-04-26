@@ -1,0 +1,177 @@
+<!-- The “Buy Shopping Cart” page and the “Confirmation” page
+Whenever the session belongs to a customer, a link “Buy Shopping Cart” 
+should appear at the top of the page. The link takes the customer
+to the “Buy Shopping Cart” page. There, the customer sees the products,
+amounts and prices of what he has chosen. He sees the amount 
+price for each product and also sees the total price of the shopping cart.
+He provides his credit card in a text box and clicks “Purchase”. 
+(Ignore the shipping address and shipping method.) A successful purchase
+leads to a “Confirmation” page that shows what was bought.
+After the purchase the shopping cart is emptied. The data of the purchase (what 
+products/quantities were in the boughtcart, who bought, when and at what price) 
+are stored in the database. The confirmation page provides a link to the 
+“Products Browsing” page so that the customer can start again.
+Notes:
+
+Notice that a product’s price may be updated between the time the product was 
+placed on the cart, the time it was displayed on the “Buy Shopping Cart” page 
+and the time the user actually purchases the cart. Therefore, the displayed 
+“amount price for each product” is open to two interpretations: In the first 
+interpretation, the price is fixed at the point that the user added the 
+product to the cart. In the second interpretation, the displayed price is 
+the current price of the product. Choose one of the two interpretations and 
+state your assumption. In either case, assume that the final purchase price 
+(charged price) is the one that was displayed on the “Buy Shopping Cart”. 
+I.e., dismiss the possibility that the price may change after the “Buy Shopping 
+Cart” was displayed and before it is purchased.
+
+The insertion of a purchase should be atomic, as the lectures discuss in 
+transactional properties.
+
+In later stages we will need the complete information about which carts were 
+bought, by whom, when, what products they included, what quantities of each 
+product, and at what price each of the purchased products was bought.
+
+It is possible that after the time a product purchase is stored in the 
+database, the product name changes.Your database should be organized 
+in such a way that the amount of updating that needs to happen in such 
+a case, is minimal. -->
+
+<!DOCTYPE HTML>
+<head>
+	<title>CSE 135 website</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script> 
+	<script src="js/jquery.openCarousel.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript" src="js/move-top.js"></script>
+</head>
+<body>
+	<div class="header">
+  	  		<div class="wrap">
+				<div class="header_top">
+					<div class="logo">
+						CSE 135 E-Commerce Website
+					</div>
+
+					<div class="header_top_right">
+						<div class="search_box">
+							<span>Search</span>
+							<form>
+								<input type="text" value=""><input type="submit" value="">
+					     	</form>
+					     	<div class="clear"></div>
+					    </div>
+					</div>
+
+			     <div class="clear"></div>
+  		    </div>   
+			
+			<div class="header_top">
+				<div class="header_top_name">
+					Hello Garet!
+				</div> 
+			</div>
+			
+  		    <div class="navigation">
+				<ul class="nav">
+					<li>
+						<a href="index.html">Home</a>
+					</li>
+					<li>
+						<a href="catagories.html">Catagories</a>
+					</li>
+					<li>
+						<a href="products.html">Products</a>
+					</li>
+					<li>
+						<a href="index.html">Products Browsing</a>
+					</li>
+					<li>
+						<a href="productOrder.html">Product Order</a>
+					</li>
+					<li>
+						<a href="buyShoppingCart.html">Buy Shopping Cart</a>
+					</li>
+				</ul>
+				<span class="left-ribbon"> </span> 
+				<span class="right-ribbon"> </span>    
+  		    </div>
+   		</div>
+   </div>
+   <!------------End Header ------------>
+	<div class="main">
+		<div class="content">
+			<div class="content_bottom">
+				<div class="wrap">
+					<div class="content-bottom-left">
+						<div class="categories">
+							<ul>
+								<h3>Browse All Categories</h3>
+								<li><a href="#">Appliances</a></li>
+								<li><a href="#">Sports Equipments</a></li>
+								<li><a href="#">Computers & Electronics</a></li>
+								<li><a href="#">Office supplies</a></li>
+								<li><a href="#">Health & Beauty</a></li>
+								<li><a href="#">Home & Garden</a></li>
+								<li><a href="#">Apparel</a></li>
+								<li><a href="#">Toys & Games</a></li>
+								<li><a href="#">Automotive</a></li>
+							</ul>
+						</div>		
+					</div>
+					<div class="content-bottom-right">						
+						<div class="product-articles">
+							<h3>Browse All Categories</h3>
+							<ul>
+								<li>
+									<div class="article">
+										<p><span>The “Buy Shopping Cart” page and the “Confirmation” page Whenever the session belongs to a customer, a link “Buy Shopping Cart” should appear at the top of the page. The link takes the customer to the “Buy Shopping Cart” page. There, the customer sees the products, amounts and prices of what he has chosen. He sees the amount price for each product and also sees the total price of the shopping cart. He provides his credit card in a text box and clicks “Purchase”. (Ignore the shipping address and shipping method.) A successful purchase leads to a “Confirmation” page that shows what was bought. After the purchase the shopping cart is emptied. The data of the purchase (what products/quantities were in the boughtcart, who bought, when and at what price) are stored in the database. The confirmation page provides a link to the “Products Browsing” page so that the customer can start again. Notes:  Notice that a product’s price may be updated between the time the product was placed on the cart, the time it was displayed on the “Buy Shopping Cart” page and the time the user actually purchases the cart. Therefore, the displayed “amount price for each product” is open to two interpretations: In the first interpretation, the price is fixed at the point that the user added the product to the cart. In the second interpretation, the displayed price is the current price of the product. Choose one of the two interpretations and state your assumption. In either case, assume that the final purchase price (charged price) is the one that was displayed on the “Buy Shopping Cart”. I.e., dismiss the possibility that the price may change after the “Buy Shopping Cart” was displayed and before it is purchased.  The insertion of a purchase should be atomic, as the lectures discuss in transactional properties.  In later stages we will need the complete information about which carts were bought, by whom, when, what products they included, what quantities of each product, and at what price each of the purchased products was bought.  It is possible that after the time a product purchase is stored in the database, the product name changes.Your database should be organized in such a way that the amount of updating that needs to happen in such a case, is minimal.</span></p>
+										<p>Phasellus in quam dui. Nunc ornare, tellus rutrum porttitor imperdiet, dui leo molestie nisl, sit amet dignissim nibh magna pharetra quam. Nunc ultrices pellentesque massa, ac adipiscing dui rutrum id. In cursus augue non erat faucibus eu condimentum dolor molestie.</p>
+										<p><a href="#">+ Read Full article</a></p>
+									</div>
+								</li>
+								<li>
+									<div class="article">
+										<p><span>Phasellus sollicitudin consectetur</span></p>
+										<p>Cras aliquam, odio ac consectetur tincidunt, eros nunc fermentum augue, quis rutrum ante lectus ac lectus. Fusce sed tellus orci, et feugiat urna. Integer et dictum leo. Nulla consectetur tempus orci sed consequat. Mauris cursus est a sapien venenatis faucibus. Etiam sagittis convallis volutpat.</p>
+										<p><a href="#">+ Read Full article</a></p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+      </div>
+    </div>
+	<div class="footer">
+		<div class="wrap">	
+			<div class="copy_right">
+				<p>Why do we have a footer again?</p>
+			</div>	
+			<div class="footer-nav">
+				<ul>
+					<li><a href="#">Terms of Use</a> : </li>
+					<li><a href="#">Privacy Policy</a> : </li>
+					<li><a href="contact.html">Contact Us</a> : </li>
+					<li><a href="#">Sitemap</a></li>
+				</ul>
+			</div>		
+        </div>
+    </div>
+    <script type="text/javascript">
+		$(document).ready(function() {			
+			$().UItoTop({ easingType: 'easeOutQuart' });
+			
+		});
+	</script>
+    <a href="#" id="toTop"> </a>
+    <script type="text/javascript" src="js/navigation.js"></script>
+</body>
+</html>
+
