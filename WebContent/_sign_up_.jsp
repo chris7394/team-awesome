@@ -42,7 +42,7 @@
 	                    System.out.println("Connected to database... scraping NSA servers now");
 	                }
 	    			
-	    			String sqlstr = "INSERT INTO films (username, role, age, state) VALUES ('" + username + "','" + role + "','" + age + "','" + state + "');";
+	    			String sqlstr = "INSERT INTO users (username, role, age, state) VALUES ('" + username + "','" + role + "','" + age + "','" + state + "');";
 	    			
 	    			Statement st = con.createStatement();
 	    			ResultSet rs = st.executeQuery(sqlstr);
