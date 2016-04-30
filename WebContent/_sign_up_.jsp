@@ -8,13 +8,25 @@
     	<%@ page import="java.sql.*" %>
         <%
 	        String username=request.getParameter("username");
-        
-        	if(request.getParameter("username") == null && request.getParameter("username").isEmpty()){
-        		response.sendRedirect("access_denied.jsp");	
-        	}
+        	String role=request.getParameter("role");
+	        
+        	if(request.getParameter("age") != null && request.getParameter("age").isEmpty()){
+	        	response.sendRedirect("bad_signup.jsp");
+	        }
+        	else if(request.getParameter("username") != null && request.getParameter("username").isEmpty()){
+	        	response.sendRedirect("bad_signup.jsp");
+	        }
         	else{
+        		session.setAttribute("username",username);
+        		session.setAttribute("role",role);
         		
-	    		try{
+        		int age = Integer.parseInt(request.getParameter("age"));
+        		session.setAttribute("age",age);
+	        	
+        		String state=request.getParameter("state");
+        		session.setAttribute("state",state);
+	        	
+	        	try{
 					Class.forName("org.postgresql.Driver");
 				} 
 				catch(java.lang.ClassNotFoundException e){
@@ -30,28 +42,22 @@
 	                    System.out.println("Connected to database... scraping NSA servers now");
 	                }
 	    			
-	    			String sqlstr = "SELECT * FROM users WHERE username='" + username + "');";
+	    			String sqlstr = "INSERT INTO films (username, role, age, state) VALUES ('" + username + "','" + role + "','" + age + "','" + state + "');";
 	    			
 	    			Statement st = con.createStatement();
 	    			ResultSet rs = st.executeQuery(sqlstr);
 
-	    			System.out.println("Edward Snowden account has been found. NSA servers are being restarted now..");
-	         		
-	    			if(!rs.next()){
-	    				response.sendRedirect("access_denied.jsp");
-	    			}
+	    			System.out.println("Edward Snowden account has been created. NSA servers ar ebeing restarted now..");
 	    		} 
 	    		catch(SQLException ex) 
 	    		{
 	    			System.err.println("SQLException: " + ex.getMessage());
-	    			response.sendRedirect("access_denied.jsp");
+	    			response.sendRedirect("bad_signup.jsp");
 	    		}
 	        	finally {
-	        		session.setAttribute("username",username);
-	        		response.sendRedirect("home.jsp");
+	        		response.sendRedirect("good_signup.jsp");
 	        	}
-	    		
-        	}
+        	}    
         %>
     </body>
 </html>
