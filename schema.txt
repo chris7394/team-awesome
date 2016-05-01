@@ -1,0 +1,24 @@
+CREATE TABLE users (
+	ID      SERIAL,
+	name    TEXT NOT NULL,
+	role	TEXT NOT NULL,
+	age     INTEGER NOT NULL CHECK (age >= 0),
+	state	TEXT NOT NULL,
+	UNIQUE (name)
+);
+
+CREATE TABLE product_categories (
+	ID	SERIAL PRIMARY KEY,
+	name	TEXT NOT NULL,
+	UNIQUE (name)
+);
+
+CREATE TABLE product (
+	ID	  SERIAL,
+	sku	  INTEGER NOT NULL,
+	name	  TEXT NOT NULL,
+	category  INTEGER REFERENCES product_categories (ID) NOT NULL,
+	price	  INTEGER NOT NULL CHECK (price >= 0),
+	UNIQUE (sku)
+);
+
