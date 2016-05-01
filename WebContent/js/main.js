@@ -9,7 +9,8 @@ function toggleOwner() {
 	var errorElement = document.getElementById('error');
 				
     //if (session.getAttribute("is_owner") == false) {
-	if(userName != 'Owner'){
+	//if(userName != 'Owner'){
+	if(userName == 'Owner'){
 		mainElement.style.display = 'none';
 		errorElement.style.display = 'block';
     }
