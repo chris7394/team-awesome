@@ -173,20 +173,6 @@ escalates easier to code that reports the failure reasons -->
 
 						<table id="category-table"
 							class="table table-striped table-bordered table-hover">
-							<thead>
-								<tr>
-									<th>category Name</th>
-									<th>Edit</th>
-									<th>Delete</th>
-								</tr>
-							</thead>
-							<tfoot>
-								<tr>
-									<th>category Name</th>
-									<th>Edit</th>
-									<th>Delete</th>
-								</tr>
-							</tfoot>
 							<tbody>
 
 								<%
@@ -195,7 +181,9 @@ escalates easier to code that reports the failure reasons -->
 								<tr>
 									<td><%=category_names.get(i)%></td>
 									<td><button class="btn btn-sm btn-success" type="submit">Edit</button></td>
-									<td><button class="btn btn-sm btn-danger" type="submit">Delete</button></td>
+									<td><form action="_delete_category.jsp" method="post">
+										<button name="category_name" value="<%=category_names.get(i)%>" class="btn btn-sm btn-danger" type="submit">Delete</button>
+									</form></td>
 								</tr>
 								<%
 									}
