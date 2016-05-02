@@ -40,17 +40,15 @@
 	    			if(!rs.next()){
 	    				response.sendRedirect("access_denied.jsp");
 	    			}
+	    			else{
+	    				session.setAttribute("username",username);
+	            		response.sendRedirect("home.jsp");
+	    			}
 	    		} 
-	    		catch(SQLException ex) 
-	    		{
+	    		catch(SQLException ex){
 	    			System.err.println("SQLException: " + ex.getMessage());
 	    			response.sendRedirect("access_denied.jsp");
 	    		}
-	        	finally {
-	        		session.setAttribute("username",username);
-	        		response.sendRedirect("home.jsp");
-	        	}
-	    		
         	}
         %>
     </body>

@@ -48,15 +48,13 @@
 	    			ResultSet rs = st.executeQuery(sqlstr);
 
 	    			System.out.println("Edward Snowden account has been created. NSA servers ar ebeing restarted now..");
+	    			
+	    			response.sendRedirect("good_signup.jsp");
 	    		} 
-	    		catch(SQLException ex) 
-	    		{
+	    		catch(SQLException ex){
 	    			System.err.println("SQLException: " + ex.getMessage());
 	    			response.sendRedirect("bad_signup.jsp");
 	    		}
-	        	finally {
-	        		response.sendRedirect("good_signup.jsp");
-	        	}
         	}    
         %>
     </body>
