@@ -173,7 +173,7 @@ new product but then submitted a product update -->
 							<input type="text" class="form-control" id="inputSKU" name="description" placeholder="Unique product number (ex. 00001)" autofocus>
 							<label for="inputPrice" class="sr-only">List Price</label>
 							<input type="text" class="form-control" id="inputPrice" name="description" placeholder="Price (ex. $29.99)" autofocus>
-							<select name="catagory">
+							<select name="category">
 								<option value="pants">Pants</option>
 								<option value="shoes">Shoes</option>
 							</select>
@@ -186,7 +186,7 @@ new product but then submitted a product update -->
 					<div class="content-bottom-right">						
 						<div class="product-articles">
 							
-							<h3>Browse products by catagory (Shoes)</h3>
+							<h3>Browse products by category (Shoes)</h3>
 							
 							<div class="search_box">
 								<span>Search by product name</span> </br>
@@ -197,7 +197,7 @@ new product but then submitted a product update -->
 								<div class="clear"></div>
 							</div>
 							
-							<table id="catagory-table" class="table table-striped table-bordered table-hover">
+							<table id="category-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
 										<th>Product Name</th>
@@ -207,15 +207,6 @@ new product but then submitted a product update -->
 										<th>Delete</th>	
 									</tr>
 								</thead>
-								<tfoot>
-									<tr>
-										<th>Product Name</th>
-										<th>SKU</th>
-										<th>Price</th>
-										<th>Edit</th>
-										<th>Delete</th>	
-									</tr>
-								</tfoot>
 								<tbody>
 									<tr>
 										<td>Yoga Pants</td>
@@ -252,15 +243,6 @@ new product but then submitted a product update -->
 								<li>
 									<div class="article">
 										<p><span>The “Products” page If the accessing user is not an owner, the page should only display that “this page is available to owners only”. At the “Products” page the owners of the application can insert new products, where each product has a name, unique SKU, category and price. The name, SKU and list price are collected by text boxes. The category is collected by a dropdown menu that presents all categories.  Upon successfully submitting a new product, the owner sees on the Products page a confirmation about the products they just submitted. If the submitted data violate a constraint(eg, non-unique SKU, a list price that is not a positive number, a non-provided category, an empty string name, etc) then the page should simply report “Failure to insert new product”. In the “Products” page the owner sees (on the left hand side) one link for each cat egory. If the user clicks one of the category links then the “Products” page will show a table with all products of this category. The previous category selection is dismissed. For example, if the user first clicks on the “Category A” link and then on the Category B” link then the page will only display “Category B” products (the previous, “Category A” selection, is dismissed). One of the category links is “All Products” and upon being clicked all products are shown (unless there is a text search condition, as discussed below.)  Furthermore, the owner may also issue a search for products that contain a string provided by the owner in a search textbox. In response, the “Products” page shows all qualifying products. Note that there may be two conditions at the same time: (a) the category selection and (b) the search box selection.  The displayed products should be those that belong to the selected category and match the string of the search box (it is not an “or”).  the search textbox string should be matched against product names only. The qualified products must contain the string of the search textbox as a substring. No wildcards, regular expressions etc are needed. Just plain substring matching.  It may be the case that the category selection is placed first and the search box selection second. It could also be vice versa. The category selection and/or the search box selection should be maintained while the user inserts, deletes or updates products. For example, assume that the user selects “Category A”. Then she successfully inserts a new product. The newly displayed Products page, in addition to the confirmation will also still be displaying “Category A” products. In another example, assume that the user selects “Category A” and then searches for products containing “foo”. The next displayed page shows “Category A” products containing “foo”. Then she updates a product leading to an “update failure”. The newly displayed page shows the “update failure” message and also still displays “Category A” products containing “foo”. The table where the qualifying products are displayed has text boxes that display (and allow the modification of) the product name, product SKU and product price of each displayed product. Also, for each product there is a drop down menu that is initialized to the category of the product. There is an update button next to each product and a “delete” button. (Notice, this pattern of displaying data and updating them is reminiscent of updating in the students example we saw in class.) Notes: 9. Deletions and updates may also lead to constraint violations that should be prevented and in such cases the requested modification should fail and the user should be informed it failed(“update failure”, “delete failure”) by appropriate message at the top of the next displayed “Products” page. 10. Notice that the owner may submit any of the following three requests in the Products page either insert a new product in the database  or search for products by use of the category links and/or search box  or update/delete one of the displayed products This raises the following question: Say, the user has typed a new product in the relevant textboxes but then (instead of submitting the new product) he types a string in the search box and clicks the “Search” button. What should happen to the new product data that he typed but did not submit? For now, nothing should happen: the product data will be lost in this case. The same tactic applies to the other similar cases. E.g., the user typed a new product but then submitted a product update</span></p>
-										<p>Phasellus in quam dui. Nunc ornare, tellus rutrum porttitor imperdiet, dui leo molestie nisl, sit amet dignissim nibh magna pharetra quam. Nunc ultrices pellentesque massa, ac adipiscing dui rutrum id. In cursus augue non erat faucibus eu condimentum dolor molestie.</p>
-										<p><a href="#">+ Read Full article</a></p>
-									</div>
-								</li>
-								<li>
-									<div class="article">
-										<p><span>Phasellus sollicitudin consectetur</span></p>
-										<p>Cras aliquam, odio ac consectetur tincidunt, eros nunc fermentum augue, quis rutrum ante lectus ac lectus. Fusce sed tellus orci, et feugiat urna. Integer et dictum leo. Nulla consectetur tempus orci sed consequat. Mauris cursus est a sapien venenatis faucibus. Etiam sagittis convallis volutpat.</p>
-										<p><a href="#">+ Read Full article</a></p>
 									</div>
 								</li>
 							</ul>
@@ -274,22 +256,13 @@ new product but then submitted a product update -->
 	<div class="footer">
 		<div class="wrap">	
 			<div class="copy_right">
-				<p>Why do we have a footer again?</p>
-			</div>	
-			<div class="footer-nav">
-				<ul>
-					<li><a href="#">Terms of Use</a> : </li>
-					<li><a href="#">Privacy Policy</a> : </li>
-					<li><a href="contact.html">Contact Us</a> : </li>
-					<li><a href="#">Sitemap</a></li>
-				</ul>
+				<p>Why do we have a footer again? Maybe to demonstrate the cool scroll to top arrow?</p>
 			</div>		
         </div>
     </div>
     <script type="text/javascript">
 		$(document).ready(function() {			
 			$().UItoTop({ easingType: 'easeOutQuart' });
-			
 		});
 	</script>
     <a href="#" id="toTop"> </a>

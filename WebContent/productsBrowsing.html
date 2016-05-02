@@ -86,7 +86,7 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 					<div class="content-bottom-right">						
 						<div class="product-articles">
 							
-							<h3>Browse products by catagory (Shoes)</h3>
+							<h3>Browse products by category (Shoes)</h3>
 							
 							<div class="search_box">
 								<span>Search by product name</span> </br>
@@ -97,7 +97,7 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 								<div class="clear"></div>
 							</div>
 							
-							<table id="catagory-table" class="table table-striped table-bordered table-hover">
+							<table id="category-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
 										<th>Product Name</th>
@@ -106,14 +106,6 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 										<th>Add</th>	
 									</tr>
 								</thead>
-								<tfoot>
-									<tr>
-										<th>Product Name</th>
-										<th>SKU</th>
-										<th>Price</th>
-										<th>Add</th>	
-									</tr>
-								</tfoot>
 								<tbody>
 									<tr>
 										<td>Yoga Pants</td>
@@ -170,22 +162,13 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 	<div class="footer">
 		<div class="wrap">	
 			<div class="copy_right">
-				<p>Why do we have a footer again?</p>
-			</div>	
-			<div class="footer-nav">
-				<ul>
-					<li><a href="#">Terms of Use</a> : </li>
-					<li><a href="#">Privacy Policy</a> : </li>
-					<li><a href="contact.html">Contact Us</a> : </li>
-					<li><a href="#">Sitemap</a></li>
-				</ul>
+				<p>Why do we have a footer again? Maybe to demonstrate the cool scroll to top arrow?</p>
 			</div>		
         </div>
     </div>
     <script type="text/javascript">
 		$(document).ready(function() {			
 			$().UItoTop({ easingType: 'easeOutQuart' });
-			
 		});
 	</script>
     <a href="#" id="toTop"> </a>
