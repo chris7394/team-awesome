@@ -72,10 +72,10 @@ body {
    margin-right:10px;
 }
 .search_box form{
-	 background:#151719;
 	 position: relative;
 	 display:inline-block;
 	 padding-left:18px;
+	 border: black 1px solid;
 }
 .search_box form:after{
 	content:'';
@@ -90,7 +90,7 @@ body {
 	outline: none;
 	background: none;
 	font-size:0.85em;
-	color: #acacac;
+	color: black;
 	font-family: 'Ubuntu Condensed', sans-serif;
 	width:75%;
 	padding:10px;
@@ -168,7 +168,7 @@ body {
 	transition: all 0.3s ease-in-out;
 }
 .nav a:hover {
-	color:#FFF;
+	color:#ad3316;
 }
 .nav li {
     position: relative;
@@ -305,6 +305,9 @@ body {
 	margin-top:-60px;
 }
 /** Content **/
+.content{
+	background-color: #EEE;
+}
 .content_top{
   padding:2em 0;
   background:#FFF;

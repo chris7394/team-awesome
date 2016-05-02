@@ -10,13 +10,14 @@ Upon successfully submitting a new product, the owner sees on the
 Products page a confirmation about the products they just submitted.
 If the submitted data violate a constraint(eg, non-unique SKU, a list price 
 that is not a positive number, a non-provided category, an empty string name, etc)
-then the page should simply report “Failure to insert new product”. In the 
-“Products” page the owner sees (on the left hand side) one link for each cat
-egory. If the user clicks one of the category links then the “Products” 
-page will show a table with all products of this category. 
-The previous category selection is dismissed. For example, if the user
-first clicks on the “Category A” link and then on the Category B” link
-then the page will only display “Category B” products 
+then the page should simply report “Failure to insert new product”. 
+
+In the “Products” page the owner sees (on the left hand side) one link for 
+each category. If the user clicks one of the category links then the “Products” 
+page will show a table with all products of this category. The previous 
+category selection is dismissed. For example, if the user first clicks 
+on the “Category A” link and then on the Category B” linkthen the 
+page will only display “Category B” products 
 (the previous, “Category A” selection, is dismissed). 
 One of the category links is “All Products” and upon being clicked all products
 are shown (unless there is a text search condition, as discussed below.)
@@ -42,15 +43,18 @@ maintained while the user inserts,
 deletes or updates products. For example, assume that the user 
 selects “Category A”. Then she successfully inserts a new product.
 The newly displayed Products page, in addition to the confirmation 
-will also still be displaying “Category A” products. In another 
-example, assume that the user selects “Category A” and then searches 
+will also still be displaying “Category A” products. 
+
+In another example, assume that the user selects “Category A” and then searches 
 for products containing “foo”. The next displayed page shows “Category 
 A” products containing “foo”. Then she updates a product leading to 
 an “update failure”. The newly displayed page shows the “update failure” 
 message and also still displays “Category A” products containing “foo”.
+
 The table where the qualifying products are displayed has text boxes 
 that display (and allow the modification of) the product name, 
 product SKU and product price of each displayed product. 
+
 Also, for each product there is a drop down menu that is 
 initialized to the category of the product. There is an update 
 button next to each product and a “delete” button. 
@@ -80,7 +84,6 @@ should happen: the product data will be lost in this case. The same
 tactic applies to the other similar cases. E.g., the user typed a 
 new product but then submitted a product update -->
 
-
 <!DOCTYPE HTML>
 <head>
 	<title>CSE 135 website</title>
@@ -88,6 +91,7 @@ new product but then submitted a product update -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script> 
 	<script src="js/jquery.openCarousel.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/easing.js"></script>
@@ -96,29 +100,17 @@ new product but then submitted a product update -->
 </head>
 <body onload="toggleOwner()">
 	<div class="header">
-  	  		<div class="wrap">
-				<div class="header_top">
-					<div class="logo">
-						CSE 135 E-Commerce Website
-					</div>
-
-					<div class="header_top_right">
-						<div class="search_box">
-							<span>Search</span>
-							<form>
-								<input type="text" value=""><input type="submit" value="">
-					     	</form>
-					     	<div class="clear"></div>
-					    </div>
-					</div>
-			     <div class="clear"></div>
-  		    </div>   
-			
+  	  	<div class="wrap">
 			<div class="header_top">
+				<div class="logo">
+					CSE 135 E-Commerce Website
+				</div>
+
 				<div class="header_top_name">
 					Hello <span id="userName">Garet</span>!
-				</div> 
-			</div>
+				</div>
+				<div class="clear"></div>
+			</div>   
 			
   		    <div class="navigation">
 				<ul class="nav">
@@ -166,20 +158,95 @@ new product but then submitted a product update -->
 						<div class="categories">
 							<ul>
 								<h3>Browse All Categories</h3>
-								<li><a href="#">Appliances</a></li>
-								<li><a href="#">Sports Equipments</a></li>
-								<li><a href="#">Computers & Electronics</a></li>
-								<li><a href="#">Office supplies</a></li>
-								<li><a href="#">Health & Beauty</a></li>
-								<li><a href="#">Home & Garden</a></li>
-								<li><a href="#">Apparel</a></li>
-								<li><a href="#">Toys & Games</a></li>
-								<li><a href="#">Automotive</a></li>
+								<li><a href="#">Pants</a></li>
+								<li><a href="#">Shoes</a></li>
 							</ul>
 						</div>		
 					</div>
+					<div class="content-bottom-right">	
+						<form class="form-signin" action="_catagory_.jsp" method="post">
+							<h2 class="form-signin-heading">Insert New Product</h2>
+							<label for="inputProductName" class="sr-only">Product Name</label>
+							<input type="text" class="form-control" id="inputProductName" name="product" placeholder="Product Name (ex. Slim fit jeans)" autofocus>
+							<label for="inputSKU" class="sr-only">unique SKU</label>
+							<input type="text" class="form-control" id="inputSKU" name="description" placeholder="Unique product number (ex. 00001)" autofocus>
+							<label for="inputPrice" class="sr-only">List Price</label>
+							<input type="text" class="form-control" id="inputPrice" name="description" placeholder="Price (ex. $29.99)" autofocus>
+							<select name="catagory">
+								<option value="pants">Pants</option>
+								<option value="shoes">Shoes</option>
+							</select>
+							<br><br>
+							<button class="btn btn-lg btn-primary" type="submit">Create!</button>
+							<br><br>
+						</form>
+						
+
+					</div>
 					<div class="content-bottom-right">						
 						<div class="product-articles">
+							
+							<h3>Browse products by catagory (Shoes)</h3>
+							
+							<div class="search_box">
+								<span>Search by product name</span> </br>
+								<form>
+									<input type="text" value=""><input type="submit" value="">
+								</form>
+								</br> </br>
+								<div class="clear"></div>
+							</div>
+							
+							<table id="catagory-table" class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Product Name</th>
+										<th>SKU</th>
+										<th>Price</th>
+										<th>Edit</th>
+										<th>Delete</th>	
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Product Name</th>
+										<th>SKU</th>
+										<th>Price</th>
+										<th>Edit</th>
+										<th>Delete</th>	
+									</tr>
+								</tfoot>
+								<tbody>
+									<tr>
+										<td>Yoga Pants</td>
+										<td>000001</td>
+										<td>$99.99</td>
+										<td><button class="btn btn-sm btn-success" type="submit">Edit</button></td>
+										<td><button class="btn btn-sm btn-danger" type="submit">Delete</button></td>
+									</tr>
+									<tr>
+										<td>Vans Shoes</td>
+										<td>000002</td>
+										<td>$29.99</td>
+										<td><button class="btn btn-sm btn-success" type="submit">Edit</button></td>
+										<td><button class="btn btn-sm btn-danger" type="submit">Delete</button></td>
+									</tr>
+									<tr>
+										<td>T-Shirt</td>
+										<td>000003</td>
+										<td>$9.99</td>
+										<td><button class="btn btn-sm btn-success" type="submit">Edit</button></td>
+										<td><button class="btn btn-sm btn-danger" type="submit">Delete</button></td>
+									</tr>
+									<tr>
+										<td>Snowboard Jacket</td>
+										<td>000004</td>
+										<td>$69.99</td>
+										<td><button class="btn btn-sm btn-success" type="submit">Edit</button></td>
+										<td><button class="btn btn-sm btn-danger" type="submit">Delete</button></td>
+									</tr>								
+								</tbody>
+							</table>
 							<h3>Browse All Categories</h3>
 							<ul>
 								<li>
