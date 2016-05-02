@@ -47,13 +47,13 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 						<a href="index.html">Home</a>
 					</li>
 					<li>
-						<a href="catagories.html">Catagories</a>
+						<a href="categories.html">Categories</a>
 					</li>
 					<li>
 						<a href="products.html">Products</a>
 					</li>
 					<li>
-						<a href="index.html">Products Browsing</a>
+						<a href="productsBrowsing.html">Products Browsing</a>
 					</li>
 					<li>
 						<a href="productOrder.html">Product Order</a>
@@ -103,8 +103,7 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 										<th>Product Name</th>
 										<th>SKU</th>
 										<th>Price</th>
-										<th>Edit</th>
-										<th>Delete</th>	
+										<th>Add</th>	
 									</tr>
 								</thead>
 								<tfoot>
@@ -112,8 +111,7 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 										<th>Product Name</th>
 										<th>SKU</th>
 										<th>Price</th>
-										<th>Edit</th>
-										<th>Delete</th>	
+										<th>Add</th>	
 									</tr>
 								</tfoot>
 								<tbody>
@@ -121,29 +119,25 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 										<td>Yoga Pants</td>
 										<td>000001</td>
 										<td>$99.99</td>
-										<td><button class="btn btn-sm btn-success" type="submit">Edit</button></td>
-										<td><button class="btn btn-sm btn-danger" type="submit">Delete</button></td>
+										<td><button class="btn btn-sm btn-success" type="submit">Add</button></td>
 									</tr>
 									<tr>
 										<td>Vans Shoes</td>
 										<td>000002</td>
 										<td>$29.99</td>
-										<td><button class="btn btn-sm btn-success" type="submit">Edit</button></td>
-										<td><button class="btn btn-sm btn-danger" type="submit">Delete</button></td>
+										<td><button class="btn btn-sm btn-success" type="submit">Add</button></td>
 									</tr>
 									<tr>
 										<td>T-Shirt</td>
 										<td>000003</td>
 										<td>$9.99</td>
-										<td><button class="btn btn-sm btn-success" type="submit">Edit</button></td>
-										<td><button class="btn btn-sm btn-danger" type="submit">Delete</button></td>
+										<td><button class="btn btn-sm btn-success" type="submit">Add</button></td>
 									</tr>
 									<tr>
 										<td>Snowboard Jacket</td>
 										<td>000004</td>
 										<td>$69.99</td>
-										<td><button class="btn btn-sm btn-success" type="submit">Edit</button></td>
-										<td><button class="btn btn-sm btn-danger" type="submit">Delete</button></td>
+										<td><button class="btn btn-sm btn-success" type="submit">Add</button></td>
 									</tr>								
 								</tbody>
 							</table>
@@ -151,16 +145,18 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 							<ul>
 								<li>
 									<div class="article">
-										<p><span>The “Products” page If the accessing user is not an owner, the page should only display that “this page is available to owners only”. At the “Products” page the owners of the application can insert new products, where each product has a name, unique SKU, category and price. The name, SKU and list price are collected by text boxes. The category is collected by a dropdown menu that presents all categories.  Upon successfully submitting a new product, the owner sees on the Products page a confirmation about the products they just submitted. If the submitted data violate a constraint(eg, non-unique SKU, a list price that is not a positive number, a non-provided category, an empty string name, etc) then the page should simply report “Failure to insert new product”. In the “Products” page the owner sees (on the left hand side) one link for each cat egory. If the user clicks one of the category links then the “Products” page will show a table with all products of this category. The previous category selection is dismissed. For example, if the user first clicks on the “Category A” link and then on the Category B” link then the page will only display “Category B” products (the previous, “Category A” selection, is dismissed). One of the category links is “All Products” and upon being clicked all products are shown (unless there is a text search condition, as discussed below.)  Furthermore, the owner may also issue a search for products that contain a string provided by the owner in a search textbox. In response, the “Products” page shows all qualifying products. Note that there may be two conditions at the same time: (a) the category selection and (b) the search box selection.  The displayed products should be those that belong to the selected category and match the string of the search box (it is not an “or”).  the search textbox string should be matched against product names only. The qualified products must contain the string of the search textbox as a substring. No wildcards, regular expressions etc are needed. Just plain substring matching.  It may be the case that the category selection is placed first and the search box selection second. It could also be vice versa. The category selection and/or the search box selection should be maintained while the user inserts, deletes or updates products. For example, assume that the user selects “Category A”. Then she successfully inserts a new product. The newly displayed Products page, in addition to the confirmation will also still be displaying “Category A” products. In another example, assume that the user selects “Category A” and then searches for products containing “foo”. The next displayed page shows “Category A” products containing “foo”. Then she updates a product leading to an “update failure”. The newly displayed page shows the “update failure” message and also still displays “Category A” products containing “foo”. The table where the qualifying products are displayed has text boxes that display (and allow the modification of) the product name, product SKU and product price of each displayed product. Also, for each product there is a drop down menu that is initialized to the category of the product. There is an update button next to each product and a “delete” button. (Notice, this pattern of displaying data and updating them is reminiscent of updating in the students example we saw in class.) Notes: 9. Deletions and updates may also lead to constraint violations that should be prevented and in such cases the requested modification should fail and the user should be informed it failed(“update failure”, “delete failure”) by appropriate message at the top of the next displayed “Products” page. 10. Notice that the owner may submit any of the following three requests in the Products page either insert a new product in the database  or search for products by use of the category links and/or search box  or update/delete one of the displayed products This raises the following question: Say, the user has typed a new product in the relevant textboxes but then (instead of submitting the new product) he types a string in the search box and clicks the “Search” button. What should happen to the new product data that he typed but did not submit? For now, nothing should happen: the product data will be lost in this case. The same tactic applies to the other similar cases. E.g., the user typed a new product but then submitted a product update</span></p>
-										<p>Phasellus in quam dui. Nunc ornare, tellus rutrum porttitor imperdiet, dui leo molestie nisl, sit amet dignissim nibh magna pharetra quam. Nunc ultrices pellentesque massa, ac adipiscing dui rutrum id. In cursus augue non erat faucibus eu condimentum dolor molestie.</p>
-										<p><a href="#">+ Read Full article</a></p>
-									</div>
-								</li>
-								<li>
-									<div class="article">
-										<p><span>Phasellus sollicitudin consectetur</span></p>
-										<p>Cras aliquam, odio ac consectetur tincidunt, eros nunc fermentum augue, quis rutrum ante lectus ac lectus. Fusce sed tellus orci, et feugiat urna. Integer et dictum leo. Nulla consectetur tempus orci sed consequat. Mauris cursus est a sapien venenatis faucibus. Etiam sagittis convallis volutpat.</p>
-										<p><a href="#">+ Read Full article</a></p>
+										<p><span>The “Products Browsing” page offers to the customers the same product searching 
+											functionality that the “Products” page offers to the owners. Namely, the users 
+											may search for products using the category links and the search box. The Products 
+											Browsing page does not offer links to the other customer-accessible pages.
+
+											However, in the list of qualifying products now there is a product link also for each 
+											displayed product. If this link clicked, it will lead to the “Product Order” page, so 
+											that the customer can order this product.
+
+											Notes:
+											The jsp:include directive allows you to use the same jsp fragment in more than one jsp’s. 
+										</span></p>
 									</div>
 								</li>
 							</ul>

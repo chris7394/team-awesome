@@ -43,6 +43,7 @@ a case, is minimal. -->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script> 
 	<script src="js/jquery.openCarousel.js" type="text/javascript"></script>
@@ -51,30 +52,17 @@ a case, is minimal. -->
 </head>
 <body>
 	<div class="header">
-  	  		<div class="wrap">
-				<div class="header_top">
-					<div class="logo">
-						CSE 135 E-Commerce Website
-					</div>
-
-					<div class="header_top_right">
-						<div class="search_box">
-							<span>Search</span>
-							<form>
-								<input type="text" value=""><input type="submit" value="">
-					     	</form>
-					     	<div class="clear"></div>
-					    </div>
-					</div>
-
-			     <div class="clear"></div>
-  		    </div>   
-			
+  	  	<div class="wrap">
 			<div class="header_top">
+				<div class="logo">
+					CSE 135 E-Commerce Website
+				</div>
+
 				<div class="header_top_name">
-					Hello Garet!
-				</div> 
-			</div>
+					Hello <span id="userName">Garet</span>!
+				</div>
+				<div class="clear"></div>
+			</div>   
 			
   		    <div class="navigation">
 				<ul class="nav">
@@ -82,13 +70,13 @@ a case, is minimal. -->
 						<a href="index.html">Home</a>
 					</li>
 					<li>
-						<a href="catagories.html">Catagories</a>
+						<a href="categories.html">Categories</a>
 					</li>
 					<li>
 						<a href="products.html">Products</a>
 					</li>
 					<li>
-						<a href="index.html">Products Browsing</a>
+						<a href="productsBrowsing.html">Products Browsing</a>
 					</li>
 					<li>
 						<a href="productOrder.html">Product Order</a>
