@@ -8,7 +8,7 @@ function toggleOwner() {
     var mainElement = document.getElementById('main');
 	var errorElement = document.getElementById('error');
 				
-    //if (session.getAttribute("is_owner") == false) {
+    //if (session.getAttribute("is_owner") == true) {
 	if(userName == 'Owner'){
 		//display main, hide error
 		mainElement.style.display = 'block';
