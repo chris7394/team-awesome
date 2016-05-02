@@ -52,7 +52,7 @@
 						<a href="index.html">Home</a>
 					</li>
 					<li>
-						<a href="catagories.html">Catagories</a>
+						<a href="categories.html">Categories</a>
 					</li>
 					<li>
 						<a href="products.html">Products</a>
