@@ -42,7 +42,6 @@
 	    	
 			ResultSet rs = st.executeQuery(sqlstr);
 
-
 			String sku_name = rs.next().getString("name");
 			int sku_price = rs.next().getInt("price");
 			String sku_category = rs.next().getString ("category");
@@ -121,7 +120,9 @@
 								</div>
 								</br></br>
 								
-								<input type="number" name="SKU" value="<% print(sku_sku); %>">
+								<input type="number" name="SKU" value="<%= print(sku_sku); %>">
+								<input type="number" name="SKU_name" value="<%= print(sku_name); %>">
+								<input type="number" name="SKU_price" value="<%= print(sku_price); %>">
 							
 								<button class="btn btn-sm btn-success" type="submit">Add to cart</button>
 							</form>	

@@ -7,8 +7,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-							
+	<% 
+	
+		int num_of_items = Integer.parseInt(session.getAttribute("sc_num_items").toString());
+	
+		for(int i =1; i <= num_of_items; i++){
+			
+		}
+	%>
+	<%
+		for (int i = 0; i < num_of_items; i++){
+	%>
+	<tr>
+		<td>
+			sku
+		</td>
+		<td>
+			name
+		</td>
+		<td>
+			num
+		</td>
+		<td>
+			price
+		</td>
+		<td>
+			price total
+		</td>
+	
+		</tr>
+	<%
+		}
+	%>
 
 </body>
 </html>
