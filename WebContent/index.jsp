@@ -16,7 +16,7 @@
       		<form class="form-signin" action="_login_.jsp" method="post">
         		<h2 class="form-signin-heading">Please sign in</h2>
         		<label for="inputName" class="sr-only">Name</label>
-       			<input type="text" class="form-control" id="inputEmail" name="username" placeholder="Your Name (ex. Rob_Rhyne)" autofocus>
+       			<input type="text" class="form-control" id="inputEmail" name="name" placeholder="Your Name (ex. Rob_Rhyne)" autofocus>
         		<br>
         		<br>
         		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
