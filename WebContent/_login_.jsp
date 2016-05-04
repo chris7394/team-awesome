@@ -7,9 +7,9 @@
     <body>
     	<%@ page import="java.sql.*" %>
         <%
-	        String name=request.getParameter("name");
+	        String username=request.getParameter("username");
         
-        	if(request.getParameter("name") == null && request.getParameter("name").isEmpty()){
+        	if(request.getParameter("username") == null && request.getParameter("username").isEmpty()){
         		response.sendRedirect("access_denied.jsp");	
         	}
         	else{
@@ -30,7 +30,7 @@
 	                    System.out.println("Connected to database... scraping NSA servers now");
 	                }
 	    			
-	    			String sqlstr = "SELECT * FROM users WHERE name='" + name + "');";
+	    			String sqlstr = "SELECT * FROM users WHERE name='" + username + "';";
 	    			
 	    			Statement st = con.createStatement();
 	    			ResultSet rs = st.executeQuery(sqlstr);
@@ -41,7 +41,7 @@
 	    				response.sendRedirect("access_denied.jsp");
 	    			}
 	    			else{
-	    				session.setAttribute("name",name);
+	    				session.setAttribute("username",username);
 	            		response.sendRedirect("home.jsp");
 	    			}
 	    		} 

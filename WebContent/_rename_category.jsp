@@ -27,12 +27,12 @@
 		Statement st = con.createStatement();
 		st.executeUpdate(sqlstr);
 		
-		response.sendRedirect("category_rename_success.jsp");
+		response.sendRedirect("operation_result.jsp?op=Rename Category&res=successful&ret=categories.jsp");
 	} 
 	catch(SQLException ex) 
 	{
 		System.err.println("SQLException: " + ex.getMessage());
-		response.sendRedirect("category_rename_failure.jsp");
+		response.sendRedirect("operation_result.jsp?op=Rename Category&res=unsuccessful&ret=categories.jsp");
 	}
 %>
 </body>

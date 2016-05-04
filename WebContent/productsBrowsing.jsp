@@ -171,7 +171,7 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 										<td><%=product_names.get(i)%></td>
 										<td><%=product_skus.get(i)%></td>
 										<td><%=product_prices.get(i)%></td>
-										<td><button class="btn btn-sm btn-success" onclick="location.href='productOrder.jsp?sku=<%product_skus.get(i)%>';" type="submit">Add</button></td>
+										<td><button class="btn btn-sm btn-success" onclick="location.href='productOrder.jsp?sku=<%=product_skus.get(i)%>'" type="submit">Add</button></td>
 									</tr>
 									<%
 										}
