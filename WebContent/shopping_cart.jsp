@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,16 +22,16 @@
 		
 			<tr>
 				<td>
-					<% session.getAttribute("item_" + i.toString() + "_name"); %>
+					<%= print(session.getAttribute("item_" + i.toString() + "_name")); %>
 				</td>
 				<td>
-					<% session.getAttribute("item_" + i.toString() + "_qnty"); %>
+					<%= print(session.getAttribute("item_" + i.toString() + "_qnty")); %>
 				</td>
 				<td>
-					<% session.getAttribute("item_" + i.toString() + "_price"); %>
+					<%= print(session.getAttribute("item_" + i.toString() + "_price")); %>
 				</td>
 				<td>
-					<%= Integer.parseInt(session.getAttribute("item_" + i.toString() + "_name")) * Integer.parseInt(session.getAttribute("item_" + i.toString() + "_name")); %>
+					<%= print(Integer.parseInt(session.getAttribute("item_" + i.toString() + "_name")) * Integer.parseInt(session.getAttribute("item_" + i.toString() + "_name"))); %>
 				</td>
 			</tr>
 			
@@ -41,5 +40,13 @@
 			<%= print(total); %>
 		</tr>
 	</table>
+	
+	<form class="form-signup" action="_sign_up_.jsp" method="post">
+		
+		<input type="number" placeholder="CC # for transferring the moniez" id="cc_info" autofocus>
+		
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Buy</button>
+		
+	</form>
 </body>
 </html>
