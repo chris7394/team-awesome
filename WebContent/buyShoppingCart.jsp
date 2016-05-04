@@ -16,7 +16,7 @@
 <body>
 
 	<% 
-		int num_of_items = Integer.parseInt((String)session.getAttribute("sc_num_items"));
+		int num_of_items = ((Integer)session.getAttribute("sc_num_items")).intValue();
 	
 		int total = 0;
 			
