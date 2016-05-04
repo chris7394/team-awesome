@@ -34,6 +34,11 @@
       	try{
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost/team-awesome");
 	   
+			if(request.getParameter("sku") == null){
+				session.setAttribute("error_msg","You stumbled here by accident. This isn't the page you are looking for.");
+				response.sendRedirect("error.jsp");
+			}
+			
 			int sku_sku = request.getParameter("sku");
 			
 			String sqlstr = "SELECT * FROM products WHERE sku=" + sku_sku.toString() + ";";
