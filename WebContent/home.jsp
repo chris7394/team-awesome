@@ -16,12 +16,12 @@
 			<div class="header_top">
 				<div class="header_top_name">
 					<%
-            			if(session.getAttribute("username").toString() != null){
+            			if(session.getAttribute("username") != null){
             				String username = session.getAttribute("username").toString();
             				out.println("Hello  "+username);
             			}
             			else{
-            				out.println("<a href='login.html'>Login / Signup</a>");
+            				out.println("<a class='header_top_name' href='index.jsp'>Login / Signup</a>");
             			}
             			
             		%>
