@@ -14,6 +14,6 @@
 </head>
 <body>
 <h1>Sorry bro, your creds didn't work yo</h1>
-<h2><%= session.getAttribute("error_msg"); %></h2>
+<h2><%=session.getAttribute("error_msg")%></h2>
 </body>
 </html>
