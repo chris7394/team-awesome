@@ -14,6 +14,6 @@
 </head>
 <body>
 <h1>Your signup failed, yo</h1>
-<h2><%= print(session.getAttribute("error_msg")) %></h2>
+<h2><%= session.getAttribute("error_msg"); %></h2>
 </body>
 </html>
