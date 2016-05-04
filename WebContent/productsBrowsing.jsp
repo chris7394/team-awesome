@@ -12,6 +12,7 @@ Notes:
 The jsp:include directive allows you to use the same jsp fragment in more than one jsp’s. 
  -->
 
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML>
 <head>
@@ -28,6 +29,52 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
+
+	<%@ page import="java.sql.*"%>
+	<%@ page import="java.util.ArrayList"%>
+
+	<%
+		ArrayList<String> product_names = new ArrayList<String>();
+		ArrayList<String> product_skus = new ArrayList<String>();
+		ArrayList<String> product_prices = new ArrayList<String>();
+		
+		ArrayList<String> category_names = new ArrayList<String>();
+
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (java.lang.ClassNotFoundException e) {
+			System.err.print("ClassNotFoundException: ");
+			System.err.println(e.getMessage());
+		}
+
+		try {
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/team-awesome");
+
+			String sqlstr = "SELECT * FROM product";
+
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sqlstr);
+			
+			while (rs.next()) {
+				product_names.add(rs.getString("name"));
+				product_skus.add(rs.getString("sku"));
+				product_prices.add(rs.getString("price"));
+			}
+			
+			String sqlstr2 = "SELECT * FROM product_categories";
+
+			Statement st2 = con.createStatement();
+			ResultSet rs2 = st2.executeQuery(sqlstr2);
+			
+			while (rs2.next()) {
+				category_names.add(rs.getString("name"));
+			}
+				
+		} catch (SQLException ex) {
+			System.err.println("SQLException: " + ex.getMessage());
+		}
+	%>
+	
 	<div class="header">
   	  	<div class="wrap">
 			<div class="header_top">
@@ -77,8 +124,13 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 						<div class="categories">
 							<ul>
 								<h3>Browse All Categories</h3>
-								<li><a href="#">Pants</a></li>
-								<li><a href="#">Shoes</a></li>
+								<% 
+									category_names.add("Pants");
+									category_names.add("Shirt");
+								for (int i = 0; i < category_names.size(); i++) {%>
+								<li><a href="productsBrowsing.jsp?categories=<%=category_names.get(i)%>"><%=category_names.get(i)%></a></li>
+								
+								<% } %>
 							</ul>
 						</div>		
 					</div>
@@ -96,7 +148,7 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 								</br> </br>
 								<div class="clear"></div>
 							</div>
-							
+
 							<table id="category-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
@@ -106,49 +158,26 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 										<th>Add</th>	
 									</tr>
 								</thead>
-								<tbody>
+									<%
+										product_names.add("Pants");
+										product_names.add("Shirt");
+										product_skus.add("00001");
+										product_skus.add("00002");
+										product_prices.add("99.99");
+										product_prices.add("49.99");
+										for (int i = 0; i < product_names.size(); i++) {
+									%>
 									<tr>
-										<td>Yoga Pants</td>
-										<td>000001</td>
-										<td>$99.99</td>
-										<td><button class="btn btn-sm btn-success" onclick="location.href='productOrder.html?sku=00001';" type="submit">Add</button></td>
+										<td><%=product_names.get(i)%></td>
+										<td><%=product_skus.get(i)%></td>
+										<td><%=product_prices.get(i)%></td>
+										<td><button class="btn btn-sm btn-success" onclick="location.href='productOrder.jsp?sku=<%product_skus.get(i)%>';" type="submit">Add</button></td>
 									</tr>
-									</tr>								
+									<%
+										}
+									%>
 								</tbody>
 							</table>
-							
-							
-							
-							<table id="category-table" class="table table-striped table-bordered table-hover">
-							<tbody>
-
-								<%
-									for (int i = 0; i < category_names.size(); i++) {
-								%>
-								<tr>
-									<td><%=category_names.get(i)%></td>
-									<td><form action="_rename_category.jsp" method="post">
-										<input
-											type="text" class="form-control" id="inputcategory"
-											name="new_name" placeholder="New name.." autofocus style="max-width: 300px"> 
-										<button name="old_name" value="<%=category_names.get(i)%>" class="btn btn-sm btn-success" type="submit">Rename</button>
-									</form></td>
-									<td><form action="_delete_category.jsp" method="post">
-										<button name="category_name" value="<%=category_names.get(i)%>" class="btn btn-sm btn-danger" type="submit">Delete</button>
-									</form></td>
-								</tr>
-								<%
-									}
-								%>
-							</tbody>
-						</table>
-							
-							
-							
-							
-							
-							
-							
 							
 							<h3>Browse All Categories</h3>
 							<ul>
