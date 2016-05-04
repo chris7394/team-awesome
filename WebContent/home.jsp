@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<html>
 <head>
 	<title>CSE 135 website</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
