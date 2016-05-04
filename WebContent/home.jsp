@@ -35,7 +35,7 @@
 					<li><a href="products.jsp">Products</a></li>
 					<li><a href="productsBrowsing.jsp">Products Browsing</a></li>
 					<li><a href="productOrder.jsp">Product Order</a></li>
-					<li><a href="buyShoppingCart.html">Buy Shopping Cart</a></li>
+					<li><a href="buyShoppingCart.jsp">Buy Shopping Cart</a></li>
 				</ul>
 				<span class="left-ribbon"> </span> <span class="right-ribbon">
 				</span>
