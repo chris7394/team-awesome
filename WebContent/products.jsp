@@ -42,9 +42,9 @@
 			
 			String get_products;
 			
-			if(session.getAttribute("search") != null){
-				get_products = "SELECT * FROM products WHERE name=" + (String) session.getAttribute("search") + ";";
-			}
+			if(request.getParameter("search") != null){
+				get_products = "SELECT * FROM products WHERE name='" + request.getParameter("search") + "';";
+			}		
 			else{
 				get_products = "SELECT * FROM products WHERE category=" + category_id + ";";
 			}
@@ -74,6 +74,10 @@
 		session.setAttribute("role","owner");
 		if(session.getAttribute("role") != "owner"){
 			response.sendRedirect("owner_error.html");
+		}
+		
+		if (category_id == null) {
+			category_id = "";
 		}
 	%>
 
@@ -163,8 +167,8 @@
 							
 							<div class="search_box">
 								<span>Search by product name</span> </br>
-								<form>
-									<input type="text" value=""><input type="submit" value="">
+								<form name="cool-form" action="products.jsp" method="post">
+									<input type="text" name="search" value=""><input type="submit" value="">
 								</form>
 								</br> </br>
 								<div class="clear"></div>
