@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript" src="js/move-top.js"></script>
 </head>
-<body>				
+<body>
 	<div class="header">
 		<div class="wrap">
 			<div class="header_top">

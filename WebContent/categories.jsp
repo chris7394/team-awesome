@@ -146,14 +146,6 @@ escalates easier to code that reports the failure reasons -->
 	</div>
 	<!------------End Header ------------>
 
-	<div id="error" class="main">
-		<div class="content">
-			<div class="content_top">
-				<div class="wrap">This page is available to owners only</div>
-			</div>
-		</div>
-	</div>
-
 	<div id="main" class="main">
 		<div class="content">
 			<div class="content_bottom">
