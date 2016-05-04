@@ -25,7 +25,7 @@
 	try{
 		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/team-awesome");
 		
-		String sqlstr = "INSERT INTO products (sku, name, category, price) VALUES (" + sku + "," + name + "," + category_id + "," + price + ");";
+		String sqlstr = "INSERT INTO products (sku, name, category, price) VALUES (" + sku + ",'" + name + "'," + category_id + "," + price + ");";
 				
 		Statement st = con.createStatement();
 		st.executeUpdate(sqlstr);

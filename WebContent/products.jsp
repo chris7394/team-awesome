@@ -123,10 +123,10 @@
 					</div>
 					
 					<div class="content-bottom-right">	
-						<form class="form-signin" action="_add_product_.jsp" method="post">
+						<form class="form-signin" action="_add_product.jsp" method="post">
 							<h2 class="form-signin-heading">Insert New Product</h2>
 							<label for="inputProductName" class="sr-only">Product Name</label>
-							<input type="text" class="form-control" id="inputProductName" name="product" placeholder="Product Name (ex. Slim fit jeans)" autofocus>
+							<input type="text" class="form-control" id="inputProductName" name="name" placeholder="Product Name (ex. Slim fit jeans)" autofocus>
 							<label for="inputSKU" class="sr-only">unique SKU</label>
 							<input type="text" class="form-control" id="inputSKU" name="sku" placeholder="Unique product number (ex. 00001)" autofocus>
 							<label for="inputPrice" class="sr-only">List Price</label>
