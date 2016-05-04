@@ -12,9 +12,8 @@
 	<script src="js/jquery.openCarousel.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
 </head>
-<body onload="toggleOwner()">
+<body>
 
 
 	<%@ page import="java.sql.*"%>
@@ -67,22 +66,28 @@
 	<div class="header">
 		<div class="wrap">
 			<div class="header_top">
-				<div class="logo">CSE 135 E-Commerce Website</div>
-
 				<div class="header_top_name">
-					Hello <span id="userName">Owner</span>!
-				</div>
-				<div class="clear"></div>
+					<%
+            			if(session.getAttribute("username") != null){
+            				String username = session.getAttribute("username").toString();
+            				out.println("Hello  "+username);
+            			}
+            			else{
+            				out.println("<a class='header_top_name' href='index.jsp'>Login / Signup</a>");
+            			}
+            			
+            		%>
+				</div> 
 			</div>
-
+			
 			<div class="navigation">
 				<ul class="nav">
 					<li><a href="home.jsp">Home</a></li>
-					<li><a href="catagories.jsp">Categories</a></li>
+					<li><a href="categories.jsp">Categories</a></li>
 					<li><a href="products.jsp">Products</a></li>
 					<li><a href="productsBrowsing.jsp">Products Browsing</a></li>
 					<li><a href="productOrder.jsp">Product Order</a></li>
-					<li><a href="buyShoppingCart.html">Buy Shopping Cart</a></li>
+					<li><a href="buyShoppingCart.jsp">Buy Shopping Cart</a></li>
 				</ul>
 				<span class="left-ribbon"> </span> <span class="right-ribbon">
 				</span>
@@ -90,16 +95,6 @@
 		</div>
 	</div>
 	<!------------End Header ------------>
-
-	<div id="error" class="main">
-		<div class="content">
-			<div class="content_top">
-				<div class="wrap">
-					This page is available to owners only
-				</div>
-			</div>
-		</div>
-	</div>
 	
 	<div id="main" class="main">
 		<div class="content">
@@ -152,7 +147,7 @@
 					<div class="content-bottom-right">						
 						<div class="product-articles">
 							
-							<h3>Browse products by category (<%=request.getParameter("category")%>)</h3>
+							<h3>Browse products by category (<%if(request.getParameter("category") == null){out.println("You need to pick a category!");} else {out.println(request.getParameter("category"));}%>)</h3>
 							
 							<div class="search_box">
 								<span>Search by product name</span> </br>
