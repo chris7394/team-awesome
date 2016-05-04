@@ -160,8 +160,11 @@
 								<thead>
 									<tr>
 										<th>Product Name</th>
+										<th></th>
 										<th>SKU</th>
+										<th></th>
 										<th>Price</th>
+										<th></th>
 										<th>Delete</th>	
 									</tr>
 								</thead>
@@ -169,10 +172,28 @@
 										for (int i = 0; i < product_names.size(); i++) {
 									%>
 									<tr>
-										<td><%=product_names.get(i)%></td>
-										<td><%=product_skus.get(i)%></td>
-										<td><%=product_prices.get(i)%></td>
+										<form action="_update_product.jsp" method="post">
+										<input type="hidden" name="attr" value="name">
+										<input type="hidden" name="sku" value="<%=product_skus.get(i)%>">
+										<td><input type="text" name="new_val" placeholder="<%=product_names.get(i)%>"></td>
+										<td><button class="btn btn-sm btn-success" type="submit">Update</button></td>
+										</form>
+										<form action="_update_product.jsp" method="post">
+										<input type="hidden" name="attr" value="sku">
+										<input type="hidden" name="sku" value="<%=product_skus.get(i)%>">
+										<td><input type="text" name="new_val" placeholder="<%=product_skus.get(i)%>"></td>
+										<td><button class="btn btn-sm btn-success" type="submit">Update</button></td>
+										</form>
+										<form action="_update_product.jsp" method="post">
+										<input type="hidden" name="attr" value="price">
+										<input type="hidden" name="sku" value="<%=product_skus.get(i)%>">
+										<td><input type="text" name="new_val" placeholder="<%=product_prices.get(i)%>"></td>
+										<td><button class="btn btn-sm btn-success" type="submit">Update</button></td>
+										</form>
+										<form action="_delete_product.jsp" method="post">
+										<input type="hidden" name="sku" value="<%=product_skus.get(i)%>">
 										<td><button class="btn btn-sm btn-danger" type="submit">Delete</button></td>
+										</form>
 									</tr>
 									<%
 										}

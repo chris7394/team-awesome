@@ -174,12 +174,12 @@ escalates easier to code that reports the failure reasons -->
 							%>
 							<tr>
 								<td><%=category_names.get(i)%></td>
-								<td><form action="_rename_category.jsp" method="post">
-									<input
+								<form action="_rename_category.jsp" method="post">
+									<td><input
 										type="text" class="form-control" id="inputcategory"
-										name="new_name" placeholder="New name.." autofocus style="max-width: 300px"> 
-									<button name="old_name" value="<%=category_names.get(i)%>" class="btn btn-sm btn-success" type="submit">Rename</button>
-								</form></td>
+										name="new_name" placeholder="New name.." autofocus style="max-width: 300px"></td> 
+									<td><button name="old_name" value="<%=category_names.get(i)%>" class="btn btn-sm btn-success" type="submit">Rename</button></td>
+								</form>
 								<td><form action="_delete_category.jsp" method="post">
 									<button name="category_name" value="<%=category_names.get(i)%>" class="btn btn-sm btn-danger" type="submit">Delete</button>
 								</form></td>
