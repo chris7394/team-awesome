@@ -20,6 +20,8 @@
 	<%@ page import="java.util.ArrayList"%>
 
 	<%
+		String category_id = "";
+	
 		ArrayList<String> product_names = new ArrayList<String>();
 		ArrayList<String> product_skus = new ArrayList<String>();
 		ArrayList<String> product_prices = new ArrayList<String>();
@@ -37,7 +39,7 @@
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/team-awesome");
 
-			String category_id = request.getParameter("category");
+			category_id = request.getParameter("category");
 			
 			String get_products = "SELECT * FROM products WHERE category=" + category_id + ";";
 			
@@ -165,6 +167,8 @@
 										<th></th>
 										<th>Price</th>
 										<th></th>
+										<th>Category</th>
+										<th></th>
 										<th>Delete</th>	
 									</tr>
 								</thead>
@@ -188,6 +192,27 @@
 										<input type="hidden" name="attr" value="price">
 										<input type="hidden" name="sku" value="<%=product_skus.get(i)%>">
 										<td><input type="text" name="new_val" placeholder="<%=product_prices.get(i)%>"></td>
+										<td><button class="btn btn-sm btn-success" type="submit">Update</button></td>
+										</form>
+										<form action="_update_product.jsp" method="post">
+										<td>
+										<input type="hidden" name="attr" value="category">
+										<input type="hidden" name="sku" value="<%=product_skus.get(i) %>">
+										<select name="new_val">
+										<% 
+											for (int j = 0; j < category_ids.size(); j++) {
+												String selected = "";
+												if (category_id.equals(category_ids.get(j).toString())) {
+													selected = "selected";
+												}
+												
+												out.println("<option " + selected +
+												" value='" + category_ids.get(j).toString() + "'>"
+												+ category_names.get(j) + "</option>");
+											} 
+										%>
+										</select>
+										</td>
 										<td><button class="btn btn-sm btn-success" type="submit">Update</button></td>
 										</form>
 										<form action="_delete_product.jsp" method="post">
