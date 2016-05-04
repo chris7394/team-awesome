@@ -118,16 +118,16 @@
 							<% for (int i = 0; i < num_of_items; i++){  %>
 								<tr>
 									<td>
-										<%= out.println(session.getAttribute("item_" + Integer.toString(i) + "_name")) %>
+										<%= session.getAttribute("item_" + Integer.toString(i) + "_name") %>
 									</td>
 									<td>
-										<%= out.println(session.getAttribute("item_" + Integer.toString(i) + "_qnty")) %>
+										<%= session.getAttribute("item_" + Integer.toString(i) + "_qnty") %>
 									</td>
 									<td>
-										<%= out.println(session.getAttribute("item_" + Integer.toString(i) + "_price")) %>
+										<%= session.getAttribute("item_" + Integer.toString(i) + "_price") %>
 									</td>
 									<td>
-										<%=out.println(Integer.parseInt((String)session.getAttribute("item_" + i + "_name")) * Integer.parseInt((String)session.getAttribute("item_" + i + "_name"))) %>
+										<%= Integer.parseInt((String)session.getAttribute("item_" + i + "_name")) * Integer.parseInt((String)session.getAttribute("item_" + i + "_name")) %>
 									</td>
 								</tr>
 							<% } %>
