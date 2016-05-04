@@ -16,12 +16,12 @@
 <body>
 
 	<% 
-		int num_of_items = Integer.parseInt(session.getAttribute("sc_num_items"));
+		int num_of_items = Integer.parseInt((String)session.getAttribute("sc_num_items"));
 	
 		int total = 0;
 			
 		for(int i = 1; i <= num_of_items; i++){
-			total = total + (Integer.parseInt(session.getAttribute("item_" + Integer.toString(i) + "_name")) * Integer.parseInt(session.getAttribute("item_" + Integer.parseInt(i) + "_name")));
+			total = total + (Integer.parseInt((String)session.getAttribute("item_" + Integer.toString(i) + "_name")) * Integer.parseInt((String)session.getAttribute("item_" + i + "_name")));
 		}
 	%>
 
@@ -33,7 +33,15 @@
 				</div>
 
 				<div class="header_top_name">
-					Hello <span id="userName">Garet</span>!
+					<%
+            			if(session.getAttribute("name") != null){
+            				String name = session.getAttribute("name").toString();
+            				out.println("Hello  " + name);
+            			}
+            			else{
+            				out.println("<a class='header_top_name' href='index.jsp'>Login / Signup</a>");
+            			}
+            		%>
 				</div>
 				<div class="clear"></div>
 			</div>   
@@ -110,16 +118,16 @@
 							<% for (int i = 0; i < num_of_items; i++){  %>
 								<tr>
 									<td>
-										<%=session.getAttribute("item_" + Integer.toString(i) + "_name")); %>
+										<%= out.println(session.getAttribute("item_" + Integer.toString(i) + "_name")) %>
 									</td>
 									<td>
-										<%=session.getAttribute("item_" + Integer.toString(i) + "_qnty")); %>
+										<%= out.println(session.getAttribute("item_" + Integer.toString(i) + "_qnty")) %>
 									</td>
 									<td>
-										<%=session.getAttribute("item_" + Integer.toString(i) + "_price")); %>
+										<%= out.println(session.getAttribute("item_" + Integer.toString(i) + "_price")) %>
 									</td>
 									<td>
-										<%=Integer.parseInt(session.getAttribute("item_" + Integer.parseInt(i) + "_name")) * Integer.parseInt(session.getAttribute("item_" + Integer.parseInt(i) + "_name"))); %>
+										<%=out.println(Integer.parseInt((String)session.getAttribute("item_" + i + "_name")) * Integer.parseInt((String)session.getAttribute("item_" + i + "_name"))) %>
 									</td>
 								</tr>
 							<% } %>

@@ -56,7 +56,7 @@
 					<%
             			if(session.getAttribute("name") != null){
             				String name = session.getAttribute("name").toString();
-            				out.println("Hello  "+name);
+            				out.println("Hello  " + name);
             			}
             			else{
             				out.println("<a class='header_top_name' href='index.jsp'>Login / Signup</a>");

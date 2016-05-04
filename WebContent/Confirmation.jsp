@@ -8,7 +8,8 @@
 </head>
 <body>
 	<h2>
-		Your order has been completed and we have transferred the money. The following CC # was used: <%= print(request.getParameter("cc_info"))); %>
+		Your order has been completed and we have transferred the money. The following CC # was used: <%= out.println(request.getParameter("cc_info")) %>
 	</h2>
 </body>
 </html>
+
