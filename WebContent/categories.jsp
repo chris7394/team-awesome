@@ -54,9 +54,9 @@
 			<div class="header_top">
 				<div class="header_top_name">
 					<%
-            			if(session.getAttribute("username") != null){
-            				String username = session.getAttribute("username").toString();
-            				out.println("Hello  "+username);
+            			if(session.getAttribute("name") != null){
+            				String name = session.getAttribute("name").toString();
+            				out.println("Hello  "+name);
             			}
             			else{
             				out.println("<a class='header_top_name' href='index.jsp'>Login / Signup</a>");

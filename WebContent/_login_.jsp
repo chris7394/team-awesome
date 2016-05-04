@@ -21,7 +21,6 @@
 				}
 				
 	        	try{
-	    			
 	        		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost/team-awesome");
 	    			
 	    			if (con == null) {
