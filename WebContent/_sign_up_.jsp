@@ -45,8 +45,7 @@
 
 	    			response.sendRedirect("good_signup.jsp");
 	    		} 
-	    		catch(SQLException ex) 
-	    		{
+	    		catch(SQLException ex){
 	    			System.err.println("SQLException: " + ex.getMessage());
 	    			response.sendRedirect("bad_signup.jsp");
 	    		}
