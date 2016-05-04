@@ -43,7 +43,7 @@
 			String get_products;
 			
 			if(session.getAttribute("search") != null){
-				get_products = "SELECT * FROM products WHERE name=" + session.getAttribute("search") + ";";
+				get_products = "SELECT * FROM products WHERE name=" + (String) session.getAttribute("search") + ";";
 			}
 			else{
 				get_products = "SELECT * FROM products WHERE category=" + category_id + ";";
