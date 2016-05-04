@@ -19,20 +19,13 @@
 	<% 
 		try{
 			Class.forName("org.postgresql.Driver");
-		} 
-		
-		catch(java.lang.ClassNotFoundException e){
+		} catch(java.lang.ClassNotFoundException e){
 			System.err.print("ClassNotFoundException: ");
 			System.err.println(e.getMessage());
-			response.sendRedirect("bad_signup.jsp");
 		}
 				
       	try{
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost/team-awesome");
-	    
-			if (con != null){
-            	System.out.println("Connected to database... scraping NSA servers now");
-	        }
 	   
 			int sku_sku = request.getParameter("SKU");
 			
@@ -47,7 +40,6 @@
 			String sku_category = rs.next().getString ("category");
 
 			System.out.println("Edward Snowden's invention has been found. NSA servers can be restarted now..");
-		
 	    }
 	    catch(SQLException ex){
 			System.err.println("SQLException: " + ex.getMessage());
