@@ -13,7 +13,6 @@
     <link href="css/login.css" rel="stylesheet">
 </head>
 <body>
-<h1>Sorry bro, your creds didn't work yo</h1>
-<h2><%= session.getAttribute("error_msg"); %></h2>
+<h2>Yo, we're running into some persistence issues. Check back later, yo.</h2>
 </body>
 </html>

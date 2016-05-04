@@ -7,46 +7,49 @@
     <body>
     	<%@ page import="java.sql.*" %>
         <%
-	        String name=request.getParameter("username");
-        	String role=request.getParameter("role");
-	        
-        	if(request.getParameter("age") != null && request.getParameter("age").isEmpty()){
-	        	response.sendRedirect("bad_signup.jsp");
+	        if(request.getParameter("age") != null && request.getParameter("age").isEmpty()){
+        		session.setAttribute("error_msg", "age was null");
+        		response.sendRedirect("bad_signup.jsp");
 	        }
         	else if(request.getParameter("username") != null && request.getParameter("username").isEmpty()){
-	        	response.sendRedirect("bad_signup.jsp");
+        		session.setAttribute("error_msg", "name was null");
+        		response.sendRedirect("bad_signup.jsp");
 	        }
         	else{
-        		session.setAttribute("username",name);
-        		session.setAttribute("role",role);
-        		
-        		int age = Integer.parseInt(request.getParameter("age"));
-        		session.setAttribute("age",age);
-	        	
+        		String username=request.getParameter("username");
+        		String role=request.getParameter("role");
+        		int age = Integer.parseInt(request.getParameter("age"));	
         		String state=request.getParameter("state");
-        		session.setAttribute("state",state);
-	        	
+        		
 	        	try{
 					Class.forName("org.postgresql.Driver");
 				} 
 				catch(java.lang.ClassNotFoundException e){
 					System.err.print("ClassNotFoundException: ");
 					System.err.println(e.getMessage());
+					session.setAttribute("error_msg", "SQL class was not found");
 					response.sendRedirect("bad_signup.jsp");
 				}
 				
 	        	try{
-	    			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/team-awesome");
+	    			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost/team-awesome");
 	    			
-	    			String sqlstr = "INSERT INTO users (name, role, age, state) VALUES ('" + name + "','" + role + "','" + age + "','" + state + "');";
+	    			if (con == null) {
+	    				response.sendRedirect("db_conn_error.jsp");
+	                }
 	    			
+	    			System.out.println("Connected to database... scraping NSA servers now");
+	    			
+	    			String sqlstr = "INSERT INTO users (username, role, age, state) VALUES ('" + username + "','" + role + "','" + age + "','" + state + "');";
 	    			Statement st = con.createStatement();
-	    			st.executeUpdate(sqlstr);
+	    			ResultSet rs = st.executeQuery(sqlstr);
 
+	    			System.out.println("Edward Snowden account has been created. NSA servers ar ebeing restarted now..");
+	    			
 	    			response.sendRedirect("good_signup.jsp");
 	    		} 
 	    		catch(SQLException ex){
-	    			System.err.println("SQLException: " + ex.getMessage());
+	    			session.setAttribute("error_msg", "SQL Exception:" + ex.getMessage());
 	    			response.sendRedirect("bad_signup.jsp");
 	    		}
         	}    

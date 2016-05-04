@@ -25,17 +25,18 @@
 	
 		try{
 			Class.forName("org.postgresql.Driver");
-		} catch(java.lang.ClassNotFoundException e){
-			System.err.print("ClassNotFoundException: ");
-			System.err.println(e.getMessage());
+		} 
+		catch(java.lang.ClassNotFoundException e){
+			session.setAttribute("error_msg","ClassNotFoundException: " + e.getMessage());
+			response.sendRedirect("error.jsp");
 		}
 				
       	try{
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost/team-awesome");
 	   
-			sku_sku = request.getParameter("sku");
+			int sku_sku = request.getParameter("sku");
 			
-			String sqlstr = "SELECT * FROM products WHERE sku=" + sku_sku + ";";
+			String sqlstr = "SELECT * FROM products WHERE sku=" + sku_sku.toString() + ";";
 
  			Statement st = con.createStatement();
 	    	
