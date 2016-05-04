@@ -1,0 +1,9 @@
+Assumpions:
+
+User doesn't expect for searches by name or catagory to persist between sessions.
+The shopping cart is session-scoped
+The same user does not engage in concurrent actions from two browsers
+there is an infinite supply of all products
+Within our shopping cart items prices are based on their SKU, which matches the second interpretation "the displayed price is the current price of the product".
+The back/refresh buttons will not be pressed
+An owner can delete and/or update every category, regardless of whether she was the one who created the category.

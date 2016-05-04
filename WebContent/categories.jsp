@@ -61,7 +61,6 @@
             			else{
             				out.println("<a class='header_top_name' href='index.jsp'>Login / Signup</a>");
             			}
-            			
             		%>
 				</div> 
 			</div>

@@ -39,8 +39,12 @@
 
 			String category_id = request.getParameter("category");
 			
-			String get_products = "SELECT * FROM products WHERE category=" + category_id + ";";
-			
+			if(session.getAttribute("search") != null){
+				String get_products = "SELECT * FROM products WHERE name=" + session.getAttribute("search") + ";";
+			}
+			else{
+				String get_products = "SELECT * FROM products WHERE category=" + category_id + ";";
+			}
 			Statement st = con.createStatement();
 			ResultSet products = st.executeQuery(get_products);
 			
