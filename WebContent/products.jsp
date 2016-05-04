@@ -15,8 +15,6 @@
 	<script type="text/javascript" src="js/move-top.js"></script>
 </head>
 <body>
-
-
 	<%@ page import="java.sql.*"%>
 	<%@ page import="java.util.ArrayList"%>
 
@@ -64,8 +62,14 @@
 		} catch (SQLException ex) {
 			System.err.println("SQLException: " + ex.getMessage());
 		}
+		session.setAttribute("role","owner");
+		if(session.getAttribute("role") != "owner"){
+			response.sendRedirect("owner_error.html");
+		}
 	%>
 
+	
+	
 	<div class="header">
 		<div class="wrap">
 			<div class="header_top">

@@ -44,6 +44,10 @@
 		} catch (SQLException ex) {
 			System.err.println("SQLException: " + ex.getMessage());
 		}
+		session.setAttribute("role","owner");
+		if(session.getAttribute("role") != "owner"){
+			response.sendRedirect("owner_error.html");
+		}
 	%>
 	<div class="header">
 		<div class="wrap">
