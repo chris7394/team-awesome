@@ -7,13 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Signup fail</title>
+    <title>SQL Error</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
 </head>
 <body>
-<h1>Sorry bro, your creds didn't work yo</h1>
-<h2><%= session.getAttribute("error_msg"); %></h2>
+<h2>Yo, we're running into some SQL issues. Check back later, yo.</h2>
 </body>
 </html>
