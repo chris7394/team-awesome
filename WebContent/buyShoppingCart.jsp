@@ -20,8 +20,8 @@
 	
 		int total = 0;
 			
-		for(int i = 1; i <= num_of_items; i++){
-			total = total + (Integer.parseInt((String)session.getAttribute("item_" + Integer.toString(i) + "_name")) * Integer.parseInt((String)session.getAttribute("item_" + i + "_name")));
+		for(int i = 0; i < num_of_items; i++){
+			total = total + (Integer)session.getAttribute("item_" + Integer.toString(i) + "_price") * (Integer)session.getAttribute("item_" + i + "_qnty");
 		}
 	%>
 
@@ -65,48 +65,14 @@
 		<div class="content">
 			<div class="content_bottom">
 				<div class="wrap">
-					<div class="content-bottom-right">		
-<!-----
+					<div class="content-bottom-right">	
+						
 						<table id="category-table" class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
 									<th>Product Name</th>
 									<th>Number</th>
-									<th>Price</th>	
-								</tr>
-							</thead>
-							<tfoot>
-							<tr>
-									<th> </th>
-									<th> </th>
-									<th>Total : $99.99</th>
-							</tfoot>
-							<tbody>
-								<tr>
-									<td>Pants</td>
-									<td>1</td>
-									<td>$9.99</td>
-								</tr>
-								<tr>
-									<td>Shoes</td>
-									<td>3</td>
-									<td>$9.99</td>
-								</tr>
-								<tr>
-									<td>Shirts</td>
-									<td>2</td>
-									<td>$9.99</td>
-								</tr>
-							</tbody>
-						</table>
------>
-						<table>
-							<thead>
-								<tr>
-									<th>Product Name</th>
-									<th>Number</th>
 									<th>Price</th>
-									<th>Sub-total</th>
 								</tr>
 							</thead>
 							<tfoot>
@@ -115,6 +81,7 @@
 									<th> </th>
 									<th>Total : $<%=total%></th>
 							</tfoot>
+							<tbody>
 							<% for (int i = 0; i < num_of_items; i++){  %>
 								<tr>
 									<td>
@@ -126,11 +93,9 @@
 									<td>
 										<%= session.getAttribute("item_" + Integer.toString(i) + "_price") %>
 									</td>
-									<td>
-										<%= Integer.parseInt((String)session.getAttribute("item_" + i + "_name")) * Integer.parseInt((String)session.getAttribute("item_" + i + "_name")) %>
-									</td>
 								</tr>
 							<% } %>
+							</tbody>
 						</table>
 
 						<form class="form-signin" action="_sign_up_.jsp" method="post">

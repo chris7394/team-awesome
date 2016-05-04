@@ -41,9 +41,10 @@
 			
 			String get_products;
 			
-			if(session.getAttribute("search") != null){
+			if (session.getAttribute("search") != null) {
 				get_products = "SELECT * FROM products WHERE name=" + session.getAttribute("search") + ";";
 			}
+			
 			else{
 				get_products = "SELECT * FROM products WHERE category=" + category_id + ";";
 			}
@@ -114,7 +115,7 @@
 								<h3>Browse All Categories</h3>
 								<% 
 								for (int i = 0; i < category_names.size(); i++) {%>
-								<li><a href="productsBrowsing.jsp?category=<%=category_names.get(i)%>"><%=category_names.get(i)%></a></li>
+								<li><a href="productsBrowsing.jsp?category=<%=category_ids.get(i)%>"><%=category_names.get(i)%></a></li>
 								<% } %>
 							</ul>
 						</div>		

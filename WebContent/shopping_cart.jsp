@@ -8,12 +8,6 @@
 <body>
 	<% 
 		int num_of_items = Integer.parseInt(session.getAttribute("sc_num_items").toString());
-	
-		int total = 0;
-			
-		for(int i =1; i <= num_of_items; i++){
-			total = total + (Integer.parseInt(session.getAttribute("item_" + i.toString() + "_name")) * Integer.parseInt(session.getAttribute("item_" + i.toString() + "_name")));
-		}
 	%>
 	
 	<table>
@@ -21,22 +15,22 @@
 		
 			<tr>
 				<td>
-					<%= print(session.getAttribute("item_" + i.toString() + "_name")); %>
+					<%=((Integer)session.getAttribute("item_" + Integer.toString(i) + "_name")).intValue()%>
 				</td>
 				<td>
-					<%= print(session.getAttribute("item_" + i.toString() + "_qnty")); %>
+					<%=((Integer)session.getAttribute("item_" + Integer.toString(i) + "_qnty")).intValue()%>
 				</td>
 				<td>
-					<%= print(session.getAttribute("item_" + i.toString() + "_price")); %>
+					<%=((Integer)session.getAttribute("item_" + Integer.toString(i) + "_price")).intValue()%>
 				</td>
 				<td>
-					<%= print(Integer.parseInt(session.getAttribute("item_" + i.toString() + "_name")) * Integer.parseInt(session.getAttribute("item_" + i.toString() + "_name"))); %>
+					<%=((Integer)session.getAttribute("item_" + Integer.toString(i))).intValue()%>
 				</td>
 			</tr>
 			
 		<% } %>
 		<tr>
-			<%= print(total); %>
+			<%=num_of_items%>
 		</tr>
 	</table>
 	

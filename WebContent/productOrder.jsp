@@ -39,9 +39,9 @@
 				response.sendRedirect("error.jsp");
 			}
 			
-			int sku_sku = request.getParameter("sku");
+			sku_sku = request.getParameter("sku");
 			
-			String sqlstr = "SELECT * FROM products WHERE sku=" + sku_sku.toString() + ";";
+			String sqlstr = "SELECT * FROM products WHERE sku=" + sku_sku + ";";
 
  			Statement st = con.createStatement();
 	    	
@@ -62,9 +62,9 @@
 			<div class="header_top">
 				<div class="header_top_name">
 					<%
-            			if(session.getAttribute("username") != null){
-            				String username = session.getAttribute("username").toString();
-            				out.println("Hello  "+username);
+            			if(session.getAttribute("name") != null){
+            				String username = session.getAttribute("name").toString();
+            				out.println("Hello  "+ username);
             			}
             			else{
             				out.println("<a class='header_top_name' href='index.jsp'>Login / Signup</a>");
@@ -108,15 +108,15 @@
 								<div class="share-desc">
 								
 									<div class="share">
-										<p>Number of units :</p><input name="sku_quantity" type="number" class="text_box" value="1" min="1" />				
+										<p>Number of units :</p><input name="quantity" type="number" class="text_box" value="1" min="1" />				
 									</div>
 								</div>
 								</br></br>
 								
 								<div style="display:none;">
-									<input type="text" name="SKU" value="<%= sku_sku %>">
-									<input type="text" name="SKU_name" value="<%= name %>">
-									<input type="text" name="SKU_price" value="<%= price %>">
+									<input type="text" name="sku" value="<%= sku_sku %>">
+									<input type="text" name="name" value="<%= name %>">
+									<input type="text" name="price" value="<%= price %>">
 								</div>
 								
 								<button class="btn btn-sm btn-success" type="submit">Add to cart</button>
