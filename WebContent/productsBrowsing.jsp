@@ -38,6 +38,8 @@
 
 			String category = request.getParameter("category");
 			
+			String  = "SELECT * FROM product_categories WHERE name=" + category + ";"";
+			
 			String sqlstr = "SELECT * FROM product WHERE category=" + category + ";";
 
 			Statement st = con.createStatement();
@@ -77,7 +79,7 @@
 			<div class="navigation">
 				<ul class="nav">
 					<li><a href="home.jsp">Home</a></li>
-					<li><a href="catagories.jsp">Categories</a></li>
+					<li><a href="categories.jsp">Categories</a></li>
 					<li><a href="products.jsp">Products</a></li>
 					<li><a href="productsBrowsing.jsp">Products Browsing</a></li>
 					<li><a href="productOrder.jsp">Product Order</a></li>
