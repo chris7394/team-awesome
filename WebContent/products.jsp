@@ -14,7 +14,8 @@
 	<script type="text/javascript" src="js/move-top.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 </head>
-<body>
+<body onload="toggleOwner()">
+
 
 	<%@ page import="java.sql.*"%>
 	<%@ page import="java.util.ArrayList"%>
@@ -62,7 +63,7 @@
 			System.err.println("SQLException: " + ex.getMessage());
 		}
 	%>
-	
+
 	<div class="header">
 		<div class="wrap">
 			<div class="header_top">
@@ -89,6 +90,16 @@
 		</div>
 	</div>
 	<!------------End Header ------------>
+
+	<div id="error" class="main">
+		<div class="content">
+			<div class="content_top">
+				<div class="wrap">
+					This page is available to owners only
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	<div id="main" class="main">
 		<div class="content">
@@ -99,13 +110,43 @@
 							<ul>
 								<h3>Browse All Categories</h3>
 								<% 
-									category_names.add("Pants");
-									category_names.add("Shirt");
-								for (int i = 0; i < category_names.size(); i++) {%>
-								<li><a href="productsBrowsing.jsp?category=<%=category_names.get(i)%>"><%=category_names.get(i)%></a></li>
-								<% } %>
+								category_names.add("Pants");
+								category_names.add("Shirt");
+								for (int i = 0; i < category_names.size(); i++) {
+								%>
+								<li><a href="products.jsp?category=<%=category_names.get(i)%>"><%=category_names.get(i)%></a></li>
+								<% 
+								} 
+								%>
 							</ul>
 						</div>		
+					</div>
+					
+					<div class="content-bottom-right">	
+						<form class="form-signin" action="_products_.jsp" method="post">
+							<h2 class="form-signin-heading">Insert New Product</h2>
+							<label for="inputProductName" class="sr-only">Product Name</label>
+							<input type="text" class="form-control" id="inputProductName" name="product" placeholder="Product Name (ex. Slim fit jeans)" autofocus>
+							<label for="inputSKU" class="sr-only">unique SKU</label>
+							<input type="text" class="form-control" id="inputSKU" name="description" placeholder="Unique product number (ex. 00001)" autofocus>
+							<label for="inputPrice" class="sr-only">List Price</label>
+							<input type="text" class="form-control" id="inputPrice" name="description" placeholder="Price (ex. $29.99)" autofocus>
+							<select name="category">
+								<% 
+								category_names.add("Pants");
+								category_names.add("Shirt");
+								for (int i = 0; i < category_names.size(); i++) {
+								%>
+								<option value="<%=category_names.get(i)%>"><%=category_names.get(i)%></option>
+								<% 
+								} 
+								%>
+							</select>
+							<br><br>
+							<button class="btn btn-lg btn-primary" type="submit">Create!</button>
+							<br><br>
+						</form>
+						<div class="clear"></div>
 					</div>
 					
 					<div class="content-bottom-right">						
@@ -121,17 +162,17 @@
 								</br> </br>
 								<div class="clear"></div>
 							</div>
-
+							
 							<table id="category-table" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
 										<th>Product Name</th>
 										<th>SKU</th>
 										<th>Price</th>
-										<th>Add</th>	
+										<th>Delete</th>	
 									</tr>
 								</thead>
-									<%
+								<%
 										product_names.add("Pants");
 										product_names.add("Shirt");
 										product_skus.add("00001");
@@ -144,20 +185,20 @@
 										<td><%=product_names.get(i)%></td>
 										<td><%=product_skus.get(i)%></td>
 										<td><%=product_prices.get(i)%></td>
-										<td><button class="btn btn-sm btn-success" onclick="location.href='productOrder.jsp?sku=<%=product_skus.get(i)%>'" type="submit">Add</button></td>
+										<td><button class="btn btn-sm btn-danger" type="submit">Delete</button></td>
 									</tr>
 									<%
 										}
 									%>
 								</tbody>
 							</table>
-		
+							
 						</div>
 					</div>
 					<div class="clear"></div>
 				</div>
 			</div>
-		</div>
+      </div>
     </div>
 	<div class="footer">
 		<div class="wrap">	
@@ -175,3 +216,4 @@
     <script type="text/javascript" src="js/navigation.js"></script>
 </body>
 </html>
+

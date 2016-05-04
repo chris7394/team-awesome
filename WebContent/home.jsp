@@ -10,27 +10,9 @@
 	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript" src="js/move-top.js"></script>
 </head>
-<body>
+<body>				
 	<div class="header">
-  	  		<div class="wrap">
-				<div class="header_top">
-					<div class="logo">
-						CSE 135 E-Commerce Website
-					</div>
-
-					<div class="header_top_right">
-						<div class="search_box">
-							<span>Search</span>
-							<form>
-								<input type="text" value=""><input type="submit" value="">
-					     	</form>
-					     	<div class="clear"></div>
-					    </div>
-					</div>
-
-			     <div class="clear"></div>
-  		    </div>   
-			
+		<div class="wrap">
 			<div class="header_top">
 				<div class="header_top_name">
 					<%
@@ -45,44 +27,21 @@
             		%>
 				</div> 
 			</div>
-			
-  		    <div class="navigation">
+
+			<div class="navigation">
 				<ul class="nav">
-					<li>
-						<a href="index.html">Home</a>
-					</li>
-					<li>
-						<a href="categories.html">Categories</a>
-					</li>
-					<li>
-						<a href="products.html">Products</a>
-					</li>
-					<li>
-						<a href="index.html">Products Browsing</a>
-					</li>
-					<li>
-						<a href="productOrder.html">Product Order</a>
-					</li>
-					<li>
-						<a href="buyShoppingCart.html">Buy Shopping Cart</a>
-					</li>
+					<li><a href="home.jsp">Home</a></li>
+					<li><a href="catagories.jsp">Categories</a></li>
+					<li><a href="products.jsp">Products</a></li>
+					<li><a href="productsBrowsing.jsp">Products Browsing</a></li>
+					<li><a href="productOrder.jsp">Product Order</a></li>
+					<li><a href="buyShoppingCart.html">Buy Shopping Cart</a></li>
 				</ul>
-				<span class="left-ribbon"> </span> 
-				<span class="right-ribbon"> </span>    
+				<span class="left-ribbon"> </span> <span class="right-ribbon">
+				</span>
 			</div>
-  		    <div class="header_bottom">
-				<div class="slider-text">
-					<h2>Lorem Ipsum Placerat <br/>Elementum Quistue Tunulla Maris</h2>
-					<p>Vivamus vitae augue at quam frigilla tristique sit amet<br/> acin ante sikumpre tisdin.</p>
-					<a href="#">Sitamet Tortorions</a>
-				</div>
-				<div class="slider-img">
-					<img src="images/slider-img.png" alt="" />
-				</div>
-				<div class="clear"></div>
-			</div>
-   		</div>
-   </div>
+		</div>
+	</div>
    <!------------End Header ------------>
 	<div class="main">
 		<div class="content">

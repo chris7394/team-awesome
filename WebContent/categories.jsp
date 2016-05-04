@@ -127,11 +127,11 @@ escalates easier to code that reports the failure reasons -->
 
 			<div class="navigation">
 				<ul class="nav">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="catagories.html">Categories</a></li>
-					<li><a href="products.html">Products</a></li>
-					<li><a href="index.html">Products Browsing</a></li>
-					<li><a href="productOrder.html">Product Order</a></li>
+					<li><a href="home.jsp">Home</a></li>
+					<li><a href="catagories.jsp">Categories</a></li>
+					<li><a href="products.jsp">Products</a></li>
+					<li><a href="productsBrowsing.jsp">Products Browsing</a></li>
+					<li><a href="productOrder.jsp">Product Order</a></li>
 					<li><a href="buyShoppingCart.html">Buy Shopping Cart</a></li>
 				</ul>
 				<span class="left-ribbon"> </span> <span class="right-ribbon">
