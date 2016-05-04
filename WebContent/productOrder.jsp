@@ -27,9 +27,9 @@
       	try{
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost/team-awesome");
 	   
-			int sku_sku = request.getParameter("SKU");
+			int sku_sku = request.getParameter("sku");
 			
-			String sqlstr = "SELECT * FROM products WHERE SKU =" + product_sku + ";";
+			String sqlstr = "SELECT * FROM products WHERE sku =" + product_sku + ";";
 
  			Statement st = con.createStatement();
 	    	
