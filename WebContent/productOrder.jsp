@@ -19,20 +19,13 @@
 	<% 
 		try{
 			Class.forName("org.postgresql.Driver");
-		} 
-		
-		catch(java.lang.ClassNotFoundException e){
+		} catch(java.lang.ClassNotFoundException e){
 			System.err.print("ClassNotFoundException: ");
 			System.err.println(e.getMessage());
-			response.sendRedirect("bad_signup.jsp");
 		}
 				
       	try{
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost/team-awesome");
-	    
-			if (con != null){
-            	System.out.println("Connected to database... scraping NSA servers now");
-	        }
 	   
 			int sku_sku = request.getParameter("SKU");
 			
@@ -47,7 +40,6 @@
 			String sku_category = rs.next().getString ("category");
 
 			System.out.println("Edward Snowden's invention has been found. NSA servers can be restarted now..");
-		
 	    }
 	    catch(SQLException ex){
 			System.err.println("SQLException: " + ex.getMessage());
@@ -55,17 +47,21 @@
   		}						
 	%>
 	<div class="header">
-  	  	<div class="wrap">
+		<div class="wrap">
 			<div class="header_top">
-				<div class="logo">
-					CSE 135 E-Commerce Website
-				</div>
-
 				<div class="header_top_name">
-					Hello <span id="userName"> <% session.getAttribute("name"); %> </span>!
-				</div>
-				<div class="clear"></div>
-  		    </div>    
+					<%
+            			if(session.getAttribute("username") != null){
+            				String username = session.getAttribute("username").toString();
+            				out.println("Hello  "+username);
+            			}
+            			else{
+            				out.println("<a class='header_top_name' href='index.jsp'>Login / Signup</a>");
+            			}
+            			
+            		%>
+				</div> 
+			</div>
 			
 			<div class="navigation">
 				<ul class="nav">
@@ -74,7 +70,7 @@
 					<li><a href="products.jsp">Products</a></li>
 					<li><a href="productsBrowsing.jsp">Products Browsing</a></li>
 					<li><a href="productOrder.jsp">Product Order</a></li>
-					<li><a href="buyShoppingCart.html">Buy Shopping Cart</a></li>
+					<li><a href="buyShoppingCart.jsp">Buy Shopping Cart</a></li>
 				</ul>
 				<span class="left-ribbon"> </span> <span class="right-ribbon">
 				</span>

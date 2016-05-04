@@ -10,7 +10,8 @@
 	        String username=request.getParameter("username");
         
         	if(request.getParameter("username") == null && request.getParameter("username").isEmpty()){
-        		response.sendRedirect("access_denied.jsp");	
+        		response.sendRedirect("access_denied.jsp");
+        		session.setAttribute("sc_num_items", 0);
         	}
         	else{
         		
