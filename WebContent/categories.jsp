@@ -1,74 +1,6 @@
-<!-- The âCategoriesâ page
-At the âCategoriesâ page the owners view and create product categories.
-If the accessing user is not an owner, the page should only display that
-âthis page is available to owners onlyâ.
-The page looks like the âstudentsâ page of the class example,
-in the sense that it displays the name and description of each 
-category in text box and text area respectively, and offers âInsertâ
-, âDeleteâ and âUpdateâ buttons. Each category has a required unique name
-(collected by a text box) and a required description
-(collected by a small text area). The owners can insert, 
-delete and update categories.
-The Categories page also offers the links that the Home page offers.
-Notes:
-5.
-Any of the data modifications (insert/delete/update) 
-enabled by this page may lead to a violation of a constraint
-on category data. For example, one may attempt to update the name of 
-a category by placing a null or an empty string in it. Any data 
-modification leading to a constraint violation should be prevented, 
-the âCategoriesâ page should be redisplayed stating at the top 
-that the requested data modification failure 
-(referred to as âdata modification failureâ).
-It is optional but welcome to explain the reason of the failure. 
-(Again, more user-friendly form interaction and verification 
-techniques are not necessary at Project 1. We will deploy such later 
-with Javascript/Ajax.)
-6.
-A product category cannot be deleted if there are already products 
-belonging to it. In particular, there should be no âDeleteâ button 
-next to a product category if this category already has at least one
-product.
-8.
-Be careful of concurrency related bugs where a condition/button
-that was applicable when the Categories page was displayed is 
-no more applicable at the time the button is clicked. For example, 
-it is possible that the owner A sees a âDeleteâ button next to 
-product category c, because no product refers to c. While the owner 
-A still stares at the page, the owner B creates a product p that 
-refers to c. Then A clicks to delete c, since he still sees 
-the âDeleteâ button. However, the category c is not deletable 
-any more, since products refer to it. You will see that this kind of issue ca
-n occur in many more cases. Generally, the pattern is as 
-follows: The page allows the user to perform some database 
-modification statement (insert/delete/update) x but by the time the user 
-clicks to perform x, the situation has changed 
-(due to an action of another user) and performing x should not be allowed
-any more. Issues of this kind are solved in one of the following two methods. Y
-ou may choose either of the twobut the second will cost you a point
-:
-ï·
-[Preferred method] 
-Just before issuing the database modification statement x 
-the application code checks whether x is still applicable. 
-If the action is not applicable any more, the page will report 
-data modification failure.
-o
-Notice the needed use of transactions, which was discussed in lecture: Without 
-transactions it is possible that the application code first finds that 
-x is still applicable but in the milliseconds between checking and 
-performing the modification, another owner has inserted a product 
-and the category is not deletable any more.
-ï·
-[Lesser Method] 
-The application code issues the database modification statement x.
-When x violates the relevant database constraint, the statement will throw an 
-exception. (You should have came up with the database constraint when you 
-designed the schema.) The preferred method is better because it 
-escalates easier to code that reports the failure reasons -->
-
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
+<!DOCTYPE HTML>
 <html>
 <head>
 	<title>Categories</title>
@@ -106,11 +38,15 @@ escalates easier to code that reports the failure reasons -->
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sqlstr);
 
-			while (rs.next()) {
+			while (rs.next()){
 				category_names.add(rs.getString("name"));
 			}
 		} catch (SQLException ex) {
 			System.err.println("SQLException: " + ex.getMessage());
+		}
+		session.setAttribute("role","owner");
+		if(session.getAttribute("role") != "owner"){
+			response.sendRedirect("owner_error.html");
 		}
 	%>
 	<div class="header">
@@ -125,7 +61,6 @@ escalates easier to code that reports the failure reasons -->
             			else{
             				out.println("<a class='header_top_name' href='index.jsp'>Login / Signup</a>");
             			}
-            			
             		%>
 				</div> 
 			</div>

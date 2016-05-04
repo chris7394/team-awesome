@@ -1,6 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML>
+<html>
 <head>
 	<title>CSE 135 website</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,6 +24,7 @@
 		ArrayList<String> product_skus = new ArrayList<String>();
 		ArrayList<String> product_prices = new ArrayList<String>();
 		
+		ArrayList<Integer> category_ids = new ArrayList<Integer>();
 		ArrayList<String> category_names = new ArrayList<String>();
 
 		try {
@@ -35,28 +37,31 @@
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/team-awesome");
 
-			String category = request.getParameter("category");
+			String category_id = request.getParameter("category");
 			
-			String  = "SELECT * FROM product_categories WHERE name=" + category + ";"";
-			
-			String sqlstr = "SELECT * FROM product WHERE category=" + category + ";";
-
+			if(session.getAttribute("search") != null){
+				String get_products = "SELECT * FROM products WHERE name=" + session.getAttribute("search") + ";";
+			}
+			else{
+				String get_products = "SELECT * FROM products WHERE category=" + category_id + ";";
+			}
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sqlstr);
+			ResultSet products = st.executeQuery(get_products);
 			
-			while (rs.next()) {
-				product_names.add(rs.getString("name"));
-				product_skus.add(rs.getString("sku"));
-				product_prices.add(rs.getString("price"));
+			while (products.next()) {
+				product_names.add(products.getString("name"));
+				product_skus.add(products.getString("sku"));
+				product_prices.add(products.getString("price"));
 			}
 			
-			String sqlstr2 = "SELECT * FROM product_categories";
+			String get_categories = "SELECT * FROM product_categories";
 
-			Statement st2 = con.createStatement();
-			ResultSet rs2 = st2.executeQuery(sqlstr2);
+			st = con.createStatement();
+			ResultSet categories = st.executeQuery(get_categories);
 			
-			while (rs2.next()) {
-				category_names.add(rs.getString("name"));
+			while (categories.next()) {
+				category_ids.add(categories.getInt("id"));
+				category_names.add(categories.getString("name"));
 			}
 				
 		} catch (SQLException ex) {
@@ -106,8 +111,8 @@
 							<ul>
 								<h3>Browse All Categories</h3>
 								<% 
-									category_names.add("Pants");
-									category_names.add("Shirt");
+								category_names.add("Pants");
+								category_names.add("Shirt");
 								for (int i = 0; i < category_names.size(); i++) {%>
 								<li><a href="productsBrowsing.jsp?category=<%=category_names.get(i)%>"><%=category_names.get(i)%></a></li>
 								<% } %>
@@ -118,7 +123,7 @@
 					<div class="content-bottom-right">						
 						<div class="product-articles">
 							
-							<h3>Browse products by category (<%=request.getParameter("category")%>)</h3>
+							<h3>Browse products by category (<%if(request.getParameter("category") == null){out.println("You need to pick a category!");} else {out.println(request.getParameter("category"));}%>)</h3>
 							
 							<div class="search_box">
 								<span>Search by product name</span> </br>

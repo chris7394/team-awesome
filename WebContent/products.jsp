@@ -1,6 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML>
+<html>
 <head>
 	<title>CSE 135 website</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -14,8 +15,6 @@
 	<script type="text/javascript" src="js/move-top.js"></script>
 </head>
 <body>
-
-
 	<%@ page import="java.sql.*"%>
 	<%@ page import="java.util.ArrayList"%>
 
@@ -41,7 +40,12 @@
 
 			category_id = request.getParameter("category");
 			
-			String get_products = "SELECT * FROM products WHERE category=" + category_id + ";";
+			if(session.getAttribute("search") != null){
+				String get_products = "SELECT * FROM products WHERE name=" + session.getAttribute("search") + ";";
+			}
+			else{
+				String get_products = "SELECT * FROM products WHERE category=" + category_id + ";";
+			}
 			
 			Statement st = con.createStatement();
 			ResultSet products = st.executeQuery(get_products);
@@ -65,8 +69,14 @@
 		} catch (SQLException ex) {
 			System.err.println("SQLException: " + ex.getMessage());
 		}
+		session.setAttribute("role","owner");
+		if(session.getAttribute("role") != "owner"){
+			response.sendRedirect("owner_error.html");
+		}
 	%>
 
+	
+	
 	<div class="header">
 		<div class="wrap">
 			<div class="header_top">

@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<html>
 <head>
 	<title>CSE 135 website</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22,8 +23,7 @@
             			}
             			else{
             				out.println("<a class='header_top_name' href='index.jsp'>Login / Signup</a>");
-            			}
-            			
+            			}	
             		%>
 				</div> 
 			</div>
