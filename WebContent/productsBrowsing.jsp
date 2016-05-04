@@ -1,17 +1,3 @@
-<!-- 
-The “Products Browsing” page offers to the customers the same product searching 
-functionality that the “Products” page offers to the owners. Namely, the users 
-may search for products using the category links and the search box. The Products 
-Browsing page does not offer links to the other customer-accessible pages.
-
-However, in the list of qualifying products now there is a product link also for each 
-displayed product. If this link clicked, it will lead to the “Product Order” page, so 
-that the customer can order this product.
-
-Notes:
-The jsp:include directive allows you to use the same jsp fragment in more than one jsp’s. 
- -->
-
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML>
@@ -50,7 +36,9 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/team-awesome");
 
-			String sqlstr = "SELECT * FROM product";
+			String category = request.getParameter("category");
+			
+			String sqlstr = "SELECT * FROM product WHERE category=" + category + ";";
 
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sqlstr);
@@ -76,44 +64,30 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 	%>
 	
 	<div class="header">
-  	  	<div class="wrap">
+		<div class="wrap">
 			<div class="header_top">
-				<div class="logo">
-					CSE 135 E-Commerce Website
-				</div>
+				<div class="logo">CSE 135 E-Commerce Website</div>
 
 				<div class="header_top_name">
-					Hello <span id="userName">Garet</span>!
+					Hello <span id="userName">Owner</span>!
 				</div>
 				<div class="clear"></div>
-			</div>   
-			
-  		    <div class="navigation">
+			</div>
+
+			<div class="navigation">
 				<ul class="nav">
-					<li>
-						<a href="index.html">Home</a>
-					</li>
-					<li>
-						<a href="categories.html">Categories</a>
-					</li>
-					<li>
-						<a href="products.html">Products</a>
-					</li>
-					<li>
-						<a href="productsBrowsing.html">Products Browsing</a>
-					</li>
-					<li>
-						<a href="productOrder.html">Product Order</a>
-					</li>
-					<li>
-						<a href="buyShoppingCart.html">Buy Shopping Cart</a>
-					</li>
+					<li><a href="home.jsp">Home</a></li>
+					<li><a href="catagories.jsp">Categories</a></li>
+					<li><a href="products.jsp">Products</a></li>
+					<li><a href="productsBrowsing.jsp">Products Browsing</a></li>
+					<li><a href="productOrder.jsp">Product Order</a></li>
+					<li><a href="buyShoppingCart.html">Buy Shopping Cart</a></li>
 				</ul>
-				<span class="left-ribbon"> </span> 
-				<span class="right-ribbon"> </span>    
-  		    </div>
-   		</div>
-    </div>
+				<span class="left-ribbon"> </span> <span class="right-ribbon">
+				</span>
+			</div>
+		</div>
+	</div>
 	<!------------End Header ------------>
 	
 	<div id="main" class="main">
@@ -128,8 +102,7 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 									category_names.add("Pants");
 									category_names.add("Shirt");
 								for (int i = 0; i < category_names.size(); i++) {%>
-								<li><a href="productsBrowsing.jsp?categories=<%=category_names.get(i)%>"><%=category_names.get(i)%></a></li>
-								
+								<li><a href="productsBrowsing.jsp?category=<%=category_names.get(i)%>"><%=category_names.get(i)%></a></li>
 								<% } %>
 							</ul>
 						</div>		
@@ -171,7 +144,7 @@ The jsp:include directive allows you to use the same jsp fragment in more than o
 										<td><%=product_names.get(i)%></td>
 										<td><%=product_skus.get(i)%></td>
 										<td><%=product_prices.get(i)%></td>
-										<td><button class="btn btn-sm btn-success" onclick="location.href='productOrder.jsp?sku=<%product_skus.get(i)%>';" type="submit">Add</button></td>
+										<td><button class="btn btn-sm btn-success" onclick="location.href='productOrder.jsp?sku=<%=product_skus.get(i)%>'" type="submit">Add</button></td>
 									</tr>
 									<%
 										}
