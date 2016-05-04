@@ -78,7 +78,7 @@
 			<div class="navigation">
 				<ul class="nav">
 					<li><a href="home.jsp">Home</a></li>
-					<li><a href="catagories.jsp">Categories</a></li>
+					<li><a href="categories.jsp">Categories</a></li>
 					<li><a href="products.jsp">Products</a></li>
 					<li><a href="productsBrowsing.jsp">Products Browsing</a></li>
 					<li><a href="productOrder.jsp">Product Order</a></li>
@@ -152,7 +152,7 @@
 					<div class="content-bottom-right">						
 						<div class="product-articles">
 							
-							<h3>Browse products by category (<%=request.getParameter("category")%>)</h3>
+							<h3>Browse products by category (<%if(request.getParameter("category") == null){out.println("You need to pick a category!");} else {out.println(request.getParameter("category"));}%>)</h3>
 							
 							<div class="search_box">
 								<span>Search by product name</span> </br>
