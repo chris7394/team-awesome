@@ -25,6 +25,7 @@
 		ArrayList<String> product_skus = new ArrayList<String>();
 		ArrayList<String> product_prices = new ArrayList<String>();
 		
+		ArrayList<Integer> category_ids = new ArrayList<Integer>();
 		ArrayList<String> category_names = new ArrayList<String>();
 
 		try {
@@ -37,26 +38,27 @@
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/team-awesome");
 
-			String category = request.getParameter("category");
+			String category_id = request.getParameter("category");
 			
-			String sqlstr = "SELECT * FROM product WHERE category=" + category + ";";
-
+			String get_products = "SELECT * FROM products WHERE category=" + category_id + ";";
+			
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sqlstr);
+			ResultSet products = st.executeQuery(get_products);
 			
-			while (rs.next()) {
-				product_names.add(rs.getString("name"));
-				product_skus.add(rs.getString("sku"));
-				product_prices.add(rs.getString("price"));
+			while (products.next()) {
+				product_names.add(products.getString("name"));
+				product_skus.add(products.getString("sku"));
+				product_prices.add(products.getString("price"));
 			}
 			
-			String sqlstr2 = "SELECT * FROM product_categories";
+			String get_categories = "SELECT * FROM product_categories";
 
-			Statement st2 = con.createStatement();
-			ResultSet rs2 = st2.executeQuery(sqlstr2);
+			st = con.createStatement();
+			ResultSet categories = st.executeQuery(get_categories);
 			
-			while (rs2.next()) {
-				category_names.add(rs.getString("name"));
+			while (categories.next()) {
+				category_ids.add(categories.getInt("id"));
+				category_names.add(categories.getString("name"));
 			}
 				
 		} catch (SQLException ex) {
@@ -110,11 +112,9 @@
 							<ul>
 								<h3>Browse All Categories</h3>
 								<% 
-								category_names.add("Pants");
-								category_names.add("Shirt");
-								for (int i = 0; i < category_names.size(); i++) {
+								for (int i = 0; i < category_ids.size(); i++) {
 								%>
-								<li><a href="products.jsp?category=<%=category_names.get(i)%>"><%=category_names.get(i)%></a></li>
+								<li><a href="products.jsp?category=<%=category_ids.get(i).intValue()%>"><%=category_names.get(i)%></a></li>
 								<% 
 								} 
 								%>
@@ -123,21 +123,19 @@
 					</div>
 					
 					<div class="content-bottom-right">	
-						<form class="form-signin" action="_products_.jsp" method="post">
+						<form class="form-signin" action="_add_product_.jsp" method="post">
 							<h2 class="form-signin-heading">Insert New Product</h2>
 							<label for="inputProductName" class="sr-only">Product Name</label>
 							<input type="text" class="form-control" id="inputProductName" name="product" placeholder="Product Name (ex. Slim fit jeans)" autofocus>
 							<label for="inputSKU" class="sr-only">unique SKU</label>
-							<input type="text" class="form-control" id="inputSKU" name="description" placeholder="Unique product number (ex. 00001)" autofocus>
+							<input type="text" class="form-control" id="inputSKU" name="sku" placeholder="Unique product number (ex. 00001)" autofocus>
 							<label for="inputPrice" class="sr-only">List Price</label>
-							<input type="text" class="form-control" id="inputPrice" name="description" placeholder="Price (ex. $29.99)" autofocus>
+							<input type="text" class="form-control" id="inputPrice" name="price" placeholder="Price (ex. $29.99)" autofocus>
 							<select name="category">
 								<% 
-								category_names.add("Pants");
-								category_names.add("Shirt");
-								for (int i = 0; i < category_names.size(); i++) {
+								for (int i = 0; i < category_ids.size(); i++) {
 								%>
-								<option value="<%=category_names.get(i)%>"><%=category_names.get(i)%></option>
+								<option value="<%=category_ids.get(i).intValue()%>"><%=category_names.get(i)%></option>
 								<% 
 								} 
 								%>
@@ -173,12 +171,6 @@
 									</tr>
 								</thead>
 								<%
-										product_names.add("Pants");
-										product_names.add("Shirt");
-										product_skus.add("00001");
-										product_skus.add("00002");
-										product_prices.add("99.99");
-										product_prices.add("49.99");
 										for (int i = 0; i < product_names.size(); i++) {
 									%>
 									<tr>
