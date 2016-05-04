@@ -113,8 +113,6 @@
 							<ul>
 								<h3>Browse All Categories</h3>
 								<% 
-								category_names.add("Pants");
-								category_names.add("Shirt");
 								for (int i = 0; i < category_names.size(); i++) {%>
 								<li><a href="productsBrowsing.jsp?category=<%=category_names.get(i)%>"><%=category_names.get(i)%></a></li>
 								<% } %>
@@ -146,12 +144,6 @@
 									</tr>
 								</thead>
 									<%
-										product_names.add("Pants");
-										product_names.add("Shirt");
-										product_skus.add("00001");
-										product_skus.add("00002");
-										product_prices.add("99.99");
-										product_prices.add("49.99");
 										for (int i = 0; i < product_names.size(); i++) {
 									%>
 									<tr>

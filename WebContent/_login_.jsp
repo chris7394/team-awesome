@@ -9,7 +9,7 @@
         <%
 	        String name=request.getParameter("name");
         
-        	if(request.getParameter("name") == null && request.getParameter("name").isEmpty()){
+        	if(request.getParameter("name") == null || request.getParameter("name").isEmpty()){
         		response.sendRedirect("access_denied.jsp");
         	}
         	else{
@@ -29,7 +29,7 @@
 	    			
 	    			System.out.println("Connected to database... scraping NSA servers now");
 	    			
-	    			String sqlstr = "SELECT * FROM users WHERE name='" + name + "');";	    			
+	    			String sqlstr = "SELECT * FROM users WHERE name='" + name + "';";	    			
 	    			Statement st = con.createStatement();
 	    			ResultSet rs = st.executeQuery(sqlstr);
 
