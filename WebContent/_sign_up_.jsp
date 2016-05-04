@@ -40,9 +40,9 @@
 	    			
 	    			System.out.println("Connected to database... scraping NSA servers now");
 	    			
-	    			String sqlstr = "INSERT INTO users (username, role, age, state) VALUES ('" + username + "','" + role + "','" + age + "','" + state + "');";
+	    			String sqlstr = "INSERT INTO users (name, role, age, state) VALUES ('" + username + "','" + role + "','" + age + "','" + state + "');";
 	    			Statement st = con.createStatement();
-	    			ResultSet rs = st.executeQuery(sqlstr);
+	    			st.executeUpdate(sqlstr);
 
 	    			System.out.println("Edward Snowden account has been created. NSA servers ar ebeing restarted now..");
 	    			

@@ -14,5 +14,6 @@
 </head>
 <body>
 <h2>You have successfully signed up, yo</h2>
+<h3><a href="index.jsp">Login</a></h3>
 </body>
 </html>

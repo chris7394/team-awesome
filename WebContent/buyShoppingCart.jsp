@@ -98,7 +98,7 @@
 							</tbody>
 						</table>
 
-						<form class="form-signin" action="_sign_up_.jsp" method="post">
+						<form class="form-signin" action="order_confirmation.jsp" method="post">
 							<h2 class="form-signin-heading">Insert Credit Information</h2> </br>
 							<label for="inputCredit" class="sr-only">Category</label>
 							<input type="text" class="form-control" id="inputCredit" name="credit" placeholder="Credit number (ex. 1234-1234-1234)" autofocus>
