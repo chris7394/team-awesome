@@ -12,7 +12,6 @@
 		int total = 0;
 			
 		for(int i =1; i <= num_of_items; i++){
-			
 			total = total + (Integer.parseInt(session.getAttribute("item_" + i.toString() + "_name")) * Integer.parseInt(session.getAttribute("item_" + i.toString() + "_name")));
 		}
 	%>
