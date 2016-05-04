@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
 <html>
 <head>
 	<title>CSE 135 website</title>
@@ -15,8 +15,14 @@
 	<script type="text/javascript" src="js/move-top.js"></script>
 </head>
 <body>
+	<%@ page import="java.sql.*"%>
 
 	<% 
+		String sku_sku = "00000";
+		String name = "Sorry, Product Deleted";
+		String price = "0";
+		String category = "None";
+	
 		try{
 			Class.forName("org.postgresql.Driver");
 		} catch(java.lang.ClassNotFoundException e){
@@ -27,23 +33,22 @@
       	try{
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost/team-awesome");
 	   
-			int sku_sku = request.getParameter("sku");
+			sku_sku = request.getParameter("sku");
 			
-			String sqlstr = "SELECT * FROM products WHERE sku =" + product_sku + ";";
+			String sqlstr = "SELECT * FROM products WHERE sku=" + sku_sku + ";";
 
  			Statement st = con.createStatement();
 	    	
 			ResultSet rs = st.executeQuery(sqlstr);
-
-			String sku_name = rs.next().getString("name");
-			int sku_price = rs.next().getInt("price");
-			String sku_category = rs.next().getString ("category");
-
-			System.out.println("Edward Snowden's invention has been found. NSA servers can be restarted now..");
+			
+			while (rs.next()){
+				name = rs.getString("name");
+				price = rs.getString("price");
+				category = rs.getString ("category");
+			}
 	    }
 	    catch(SQLException ex){
 			System.err.println("SQLException: " + ex.getMessage());
-   			response.sendRedirect("access_denied.jsp");
   		}						
 	%>
 	<div class="header">
@@ -58,7 +63,6 @@
             			else{
             				out.println("<a class='header_top_name' href='index.jsp'>Login / Signup</a>");
             			}
-            			
             		%>
 				</div> 
 			</div>
@@ -85,13 +89,12 @@
 					<div class="content-bottom-right">						
 						<div class="product-articles">
 							<h2>
-								<% print(sku_name); %>
+								<%= name %>
 							</h2>
 							<div class="price">
-								<p>Price: <span><% print(sku_price); %></span></p>
-								<p>SKU: <span><% print(sku_sku); %></span></p>
-								<p>Category: <span><% print(sku_category); %></span></p>
-								
+								<p>Price: <span><%= price %></span></p>
+								<p>SKU: <span><%= sku_sku %></span></p>
+								<p>Category: <span><%= category %></span></p>
 							</div>
 							
 							<form action="_add_sku_to_cart_.jsp" method="post">
@@ -104,22 +107,17 @@
 								</div>
 								</br></br>
 								
-								<input type="number" name="SKU" value="<%= print(sku_sku)%>">
-								<input type="number" name="SKU_name" value="<%= print(sku_name)%>">
-								<input type="number" name="SKU_price" value="<%= print(sku_price)%>">
-							
+								<div style="display:none;">
+									<input type="text" name="SKU" value="<%= sku_sku %>">
+									<input type="text" name="SKU_name" value="<%= name %>">
+									<input type="text" name="SKU_price" value="<%= price %>">
+								</div>
+								
 								<button class="btn btn-sm btn-success" type="submit">Add to cart</button>
 							</form>	
 										
 							<div class="clear"></div>
-							<h3>Page Info</h3>
-							<ul>
-								<li>
-									<div class="article">
-										<p><span>The âProduct Orderâ page displays the current contents of the shopping cart. It also shows the product that was just chosen (by clicking on it in the âProducts Browsingâ) and asks the quantity of it that should be placed in the shopping cart . Upon a quantity being submitted, the shopping cart obtains one or more item. The application transfers the user to the âProducts Browsingâ page. Notes: 12. We do not require any delete/update functionality for the items of the shopping cart. 13. The shopping cart may be either session-scoped (i.e., dismissed when the session expires) or persistent (i.e., it is remembered across multiple visits). You may choose either session-scoped or persistent and state your assumption. 14. You may assume that the same user does not engage in concurrent actions from two browsers. 15. You may assume that there is an infinite supply of all products. So, when a user orders n units of product x, assume that there are nunits available.</span></p>
-									</div>
-								</li>
-							</ul>
+
 						</div>
 					</div>
 					<div class="clear"></div>
